@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "variant_id": "PV-001",
+  "base_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+  "base_snapshot_path": "../policy_snapshot.json",
+  "snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-10-01",
+  "authorized_by": "TRAINING-LINE Workshop Policy Owner",
+  "authorized_at": "2026-10-01T09:00:00+08:00",
+  "effective_from": "2026-10-01",
+  "reason": "Synthetic workshop change used to demonstrate replaying an unchanged booking under a newly authorized policy snapshot.",
+  "rule_overrides": [
+    {
+      "rule_id": "CAR-IBC-MANUAL-APPROVAL",
+      "action": {
+        "result_status": "PRECHECK_BLOCKED",
+        "routing_queue": null,
+        "pause_automation": true
+      }
+    }
+  ]
+}

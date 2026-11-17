@@ -1,0 +1,23 @@
+{
+  "assets_dir": "../../assets",
+  "output_dir": "../reports/smoke",
+  "repeat": 1,
+  "systems": {
+    "rule_baseline": {
+      "cwd": "../../agent",
+      "command": ["uv", "run", "booking-precheck"],
+      "timeout_seconds": 30,
+      "suites": {
+        "rule": {
+          "args": ["--case", "{case_id}"]
+        },
+        "document": {
+          "args": ["--document-pack", "{pack_id}", "--stage", "{stage_id}"]
+        },
+        "business": {
+          "args": ["--business-case", "{case_id}"]
+        }
+      }
+    }
+  }
+}

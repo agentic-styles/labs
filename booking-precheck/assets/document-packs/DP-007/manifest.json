@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "DP-007",
+  "case_ref": "BA-006",
+  "canonical_fixture_path": "../../business-cases/BA-006/input.json",
+  "ground_truth_path": "ground-truth.json",
+  "policy_document_ids": [
+    "POL-002"
+  ],
+  "stages": [
+    {
+      "stage_id": "S1",
+      "business_step_id": "S1",
+      "expected_status": "REQUIRE_INFORMATION",
+      "documents": [
+        {
+          "document_type": "BOOKING_REQUEST",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "BR-PORTAL-A",
+          "source_path": "source/booking-request.md",
+          "pdf_path": "output/pdf/booking-request.pdf"
+        },
+        {
+          "document_type": "PRELIMINARY_DGD",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "DGD-FORM-A",
+          "source_path": "source/preliminary-dgd.md",
+          "pdf_path": "output/pdf/preliminary-dgd.pdf"
+        },
+        {
+          "document_type": "SDS_EXTRACT",
+          "present": false,
+          "template_variant": "NOT_APPLICABLE",
+          "source_path": null,
+          "pdf_path": null
+        }
+      ]
+    }
+  ]
+}

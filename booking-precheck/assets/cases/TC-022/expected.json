@@ -1,0 +1,20 @@
+{
+  "case_id": "TC-022",
+  "title": "订舱航线超出规则快照范围",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "ROU-SNAPSHOT-SCOPE"
+  ],
+  "expected_rule_ids": [
+    "ROU-SNAPSHOT-SCOPE"
+  ],
+  "expected_routing_queue": "ROUTE_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.route.port_of_loading.unlocode",
+      "expected_value": "CNYTN"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

@@ -1,0 +1,22 @@
+{
+  "case_id": "TC-004",
+  "title": "缺少危险货物申报单",
+  "expected_status": "REQUIRE_INFORMATION",
+  "expected_reason_codes": [
+    "DOC-DGD-REQUIRED"
+  ],
+  "expected_rule_ids": [
+    "DOC-DGD-REQUIRED"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [
+    "documents.dgd"
+  ],
+  "expected_evidence": [
+    {
+      "fact": "documents.dgd",
+      "expected_value": null
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

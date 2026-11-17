@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-008",
+  "title": "重量冲突与合作伙伴运营同时命中",
+  "base_fixture_path": "../../cases/TC-001/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/booking_request/cargo/gross_weight_kg",
+          "value": 10201
+        },
+        {
+          "op": "replace",
+          "path": "/documents/booking_request/vessel_operator_code",
+          "value": "PARTNER-TRAINING"
+        }
+      ]
+    }
+  ]
+}

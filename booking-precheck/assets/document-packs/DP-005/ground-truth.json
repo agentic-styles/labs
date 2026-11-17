@@ -1,0 +1,352 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "DP-005",
+  "case_ref": "BA-007",
+  "documents": [
+    {
+      "stage_id": "S1",
+      "document_id": "TC-019-BOOKING_REQUEST",
+      "document_type": "BOOKING_REQUEST",
+      "document_version": 1,
+      "source_path": "output/pdf/booking-request.pdf",
+      "expected_page_count": 1,
+      "text_layer_required": true,
+      "facts": [
+        {
+          "fact_path": "documents.booking_request.vessel_operator_code",
+          "expected_value": "TRAINING-LINE",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Booking and voyage",
+            "evidence_text": "TRAINING-LINE"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.service_code",
+          "expected_value": "TRAIN-ME1",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Booking and voyage",
+            "evidence_text": "TRAIN-ME1"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.route.port_of_loading.unlocode",
+          "expected_value": "CNSHA",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Booking and voyage",
+            "evidence_text": "CNSHA"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.route.port_of_discharge.unlocode",
+          "expected_value": "AEJEA",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Booking and voyage",
+            "evidence_text": "AEJEA"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.route.etd",
+          "expected_value": "2026-08-20",
+          "normalization": [
+            "DATE_TO_ISO"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Booking and voyage",
+            "evidence_text": "2026-08-20"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.route.eta",
+          "expected_value": "2026-09-02",
+          "normalization": [
+            "DATE_TO_ISO"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Booking and voyage",
+            "evidence_text": "2026-09-02"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.cargo.un_number",
+          "expected_value": "UN2915",
+          "normalization": [
+            "UN_NUMBER_CANONICAL"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Cargo declaration",
+            "evidence_text": "UN2915"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.cargo.proper_shipping_name",
+          "expected_value": "RADIOACTIVE MATERIAL, TYPE A PACKAGE",
+          "normalization": [
+            "PSN_CANONICAL"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Cargo declaration",
+            "evidence_text": "RADIOACTIVE MATERIAL, TYPE A PACKAGE"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.cargo.imdg_class",
+          "expected_value": "7",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Cargo declaration",
+            "evidence_text": "7"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.cargo.packing_group",
+          "expected_value": null,
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Cargo declaration",
+            "evidence_text": "NOT PROVIDED"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.cargo.total_packages",
+          "expected_value": 100,
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Cargo declaration",
+            "evidence_text": "100 DRUM"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.cargo.gross_weight_kg",
+          "expected_value": 10000,
+          "normalization": [
+            "UNIT_TO_KG"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Cargo declaration",
+            "evidence_text": "10000 KGS"
+          }
+        },
+        {
+          "fact_path": "documents.booking_request.parties.consignee",
+          "expected_value": "SYNTHETIC JEBEL ALI TRADING LLC",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Parties",
+            "evidence_text": "SYNTHETIC JEBEL ALI TRADING LLC"
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S1",
+      "document_id": "TC-019-DGD",
+      "document_type": "PRELIMINARY_DGD",
+      "document_version": 1,
+      "source_path": "output/pdf/preliminary-dgd.pdf",
+      "expected_page_count": 1,
+      "text_layer_required": true,
+      "facts": [
+        {
+          "fact_path": "documents.dgd.declaration.un_number",
+          "expected_value": "UN2915",
+          "normalization": [
+            "UN_NUMBER_CANONICAL"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Dangerous goods description",
+            "evidence_text": "UN2915"
+          }
+        },
+        {
+          "fact_path": "documents.dgd.declaration.proper_shipping_name",
+          "expected_value": "RADIOACTIVE MATERIAL, TYPE A PACKAGE",
+          "normalization": [
+            "PSN_CANONICAL"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Dangerous goods description",
+            "evidence_text": "RADIOACTIVE MATERIAL, TYPE A PACKAGE"
+          }
+        },
+        {
+          "fact_path": "documents.dgd.declaration.imdg_class",
+          "expected_value": "7",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Dangerous goods description",
+            "evidence_text": "7"
+          }
+        },
+        {
+          "fact_path": "documents.dgd.declaration.packing_group",
+          "expected_value": null,
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Dangerous goods description",
+            "evidence_text": "NOT PROVIDED"
+          }
+        },
+        {
+          "fact_path": "documents.dgd.declaration.marine_pollutant",
+          "expected_value": false,
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Dangerous goods description",
+            "evidence_text": "NO"
+          }
+        },
+        {
+          "fact_path": "documents.dgd.declaration.total_packages",
+          "expected_value": 100,
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Dangerous goods description",
+            "evidence_text": "100 DRUM"
+          }
+        },
+        {
+          "fact_path": "documents.dgd.declaration.gross_weight_kg",
+          "expected_value": 10000,
+          "normalization": [
+            "UNIT_TO_KG"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Dangerous goods description",
+            "evidence_text": "10000 KGS"
+          }
+        },
+        {
+          "fact_path": "documents.dgd.shipper_declaration_signed",
+          "expected_value": false,
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Shipper declaration",
+            "evidence_text": "NOT SIGNED"
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S1",
+      "document_id": "TC-019-SDS",
+      "document_type": "SDS_EXTRACT",
+      "document_version": 1,
+      "source_path": "output/pdf/sds-extract.pdf",
+      "expected_page_count": 2,
+      "text_layer_required": true,
+      "facts": [
+        {
+          "fact_path": "documents.sds.product_name",
+          "expected_value": "Synthetic Solvent-Based Coating",
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Section 1",
+            "evidence_text": "Synthetic Solvent-Based Coating"
+          }
+        },
+        {
+          "fact_path": "documents.sds.metadata.issued_at",
+          "expected_value": "2026-01-15",
+          "normalization": [
+            "DATE_TO_ISO"
+          ],
+          "evidence": {
+            "page": 1,
+            "section": "Section 1",
+            "evidence_text": "2026-01-15"
+          }
+        },
+        {
+          "fact_path": "documents.sds.physical_properties.flash_point_c",
+          "expected_value": null,
+          "normalization": [],
+          "evidence": {
+            "page": 1,
+            "section": "Section 9",
+            "evidence_text": "NOT PROVIDED"
+          }
+        },
+        {
+          "fact_path": "documents.sds.transport_information.un_number",
+          "expected_value": "UN2915",
+          "normalization": [
+            "UN_NUMBER_CANONICAL"
+          ],
+          "evidence": {
+            "page": 2,
+            "section": "Section 14",
+            "evidence_text": "UN2915"
+          }
+        },
+        {
+          "fact_path": "documents.sds.transport_information.proper_shipping_name",
+          "expected_value": "RADIOACTIVE MATERIAL, TYPE A PACKAGE",
+          "normalization": [
+            "PSN_CANONICAL"
+          ],
+          "evidence": {
+            "page": 2,
+            "section": "Section 14",
+            "evidence_text": "RADIOACTIVE MATERIAL, TYPE A PACKAGE"
+          }
+        },
+        {
+          "fact_path": "documents.sds.transport_information.imdg_class",
+          "expected_value": "7",
+          "normalization": [],
+          "evidence": {
+            "page": 2,
+            "section": "Section 14",
+            "evidence_text": "7"
+          }
+        },
+        {
+          "fact_path": "documents.sds.transport_information.packing_group",
+          "expected_value": null,
+          "normalization": [],
+          "evidence": {
+            "page": 2,
+            "section": "Section 14",
+            "evidence_text": "NOT PROVIDED"
+          }
+        },
+        {
+          "fact_path": "documents.sds.transport_information.marine_pollutant",
+          "expected_value": false,
+          "normalization": [],
+          "evidence": {
+            "page": 2,
+            "section": "Section 14",
+            "evidence_text": "NO"
+          }
+        }
+      ]
+    }
+  ]
+}

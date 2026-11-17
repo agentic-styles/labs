@@ -1,0 +1,6 @@
+[tool.uv.workspace]
+members = ["contracts", "evaluation", "agent"]
+
+[dependency-groups]
+dev = ["reportlab==4.4.9"]
+

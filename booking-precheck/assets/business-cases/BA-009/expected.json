@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-009",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "PRECHECK_BLOCKED",
+      "expected_reason_codes": [
+        "PORT-TEMPORARY-DG-SUSPENSION",
+        "DOC-SDS-FRESHNESS"
+      ],
+      "expected_rule_ids": [
+        "PORT-TEMPORARY-DG-SUSPENSION",
+        "DOC-SDS-FRESHNESS"
+      ],
+      "expected_routing_queues": [
+        "DOCUMENT_DESK"
+      ],
+      "expected_required_facts": [
+        "documents.sds.metadata.issued_at"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.booking_request.route.eta",
+          "expected_value": "2026-09-11"
+        },
+        {
+          "fact": "documents.booking_request.route.port_of_discharge.facility_code",
+          "expected_value": "AEJEA-TRAIN-T1"
+        },
+        {
+          "fact": "documents.sds.metadata.issued_at",
+          "expected_value": "2024-08-09"
+        }
+      ],
+      "expected_next_action": "PAUSE_AUTOMATION_AND_REQUEST_CURRENT_SDS_EXTRACT",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    }
+  ]
+}

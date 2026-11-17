@@ -1,0 +1,22 @@
+{
+  "case_id": "TC-008",
+  "title": "SDS 缺少 Section 14 运输信息",
+  "expected_status": "REQUIRE_INFORMATION",
+  "expected_reason_codes": [
+    "DOC-SDS-S14-REQUIRED"
+  ],
+  "expected_rule_ids": [
+    "DOC-SDS-S14-REQUIRED"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [
+    "documents.sds.transport_information"
+  ],
+  "expected_evidence": [
+    {
+      "fact": "documents.sds.transport_information",
+      "expected_value": null
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

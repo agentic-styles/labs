@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-003",
+  "title": "允许的 20GP 干箱正常通过",
+  "base_fixture_path": "../../cases/TC-001/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/booking_request/equipment/container_type",
+          "value": "20GP"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": "0.2",
+  "case_id": "TC-004",
+  "submitted_at": "2026-08-10T09:00:00+08:00",
+  "policy_context": {
+    "snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+    "carrier_code": "TRAINING-LINE",
+    "route_id": "CNSHA-AEJEA-TRAIN-ME1",
+    "training_only": true
+  },
+  "documents": {
+    "booking_request": {
+      "metadata": {
+        "document_id": "TC-004-BOOKING_REQUEST",
+        "document_type": "BOOKING_REQUEST",
+        "file_name": "TC-004-booking-request.json",
+        "mime_type": "application/json",
+        "issued_at": "2026-08-10",
+        "language": "en",
+        "synthetic": true,
+        "extraction_confidence": 0.99,
+        "field_confidences": {
+          "un_number": 0.99,
+          "imdg_class": 0.99,
+          "gross_weight_kg": 0.99
+        },
+        "document_version": 1
+      },
+      "booking_reference": "BK-TC-004",
+      "carrier_code": "TRAINING-LINE",
+      "vessel_operator_code": "TRAINING-LINE",
+      "service_code": "TRAIN-ME1",
+      "route": {
+        "port_of_loading": {
+          "unlocode": "CNSHA",
+          "facility_code": "CNSHA-TRAIN-T1"
+        },
+        "port_of_discharge": {
+          "unlocode": "AEJEA",
+          "facility_code": "AEJEA-TRAIN-T1"
+        },
+        "transshipment_ports": [],
+        "etd": "2026-08-20",
+        "eta": "2026-09-02"
+      },
+      "parties": [
+        {
+          "party_id": "TC-004-SHIPPER",
+          "role": "SHIPPER",
+          "name": "SYNTHETIC SHANGHAI CHEMICAL CO",
+          "country_code": "CN",
+          "address": "100 Training Road, Shanghai",
+          "identifiers": [
+            {
+              "type": "CUSTOMER_ID",
+              "value": "CUST-TC-004-S"
+            }
+          ],
+          "synthetic": true
+        },
+        {
+          "party_id": "TC-004-CONSIGNEE",
+          "role": "CONSIGNEE",
+          "name": "SYNTHETIC JEBEL ALI TRADING LLC",
+          "country_code": "AE",
+          "address": "200 Workshop Avenue, Dubai",
+          "identifiers": [
+            {
+              "type": "CUSTOMER_ID",
+              "value": "CUST-TC-004-C"
+            }
+          ],
+          "synthetic": true
+        }
+      ],
+      "cargo": {
+        "description": "Synthetic solvent-based coating material",
+        "commodity_code": "SYN-PAINT-001",
+        "hs_code": "320890",
+        "is_dangerous_goods": true,
+        "un_number": "UN1263",
+        "proper_shipping_name": "PAINT",
+        "imdg_class": "3",
+        "subsidiary_risks": [],
+        "packing_group": "III",
+        "marine_pollutant": false,
+        "flash_point_c": 30,
+        "total_packages": 100,
+        "package_type": "DRUM",
+        "net_weight_kg": 9500,
+        "gross_weight_kg": 10000
+      },
+      "equipment": {
+        "container_type": "40HQ",
+        "quantity": 1,
+        "reefer_settings": null
+      }
+    },
+    "dgd": null,
+    "sds": {
+      "metadata": {
+        "document_id": "TC-004-SDS",
+        "document_type": "SDS_EXTRACT",
+        "file_name": "TC-004-sds-extract.json",
+        "mime_type": "application/json",
+        "issued_at": "2026-01-15",
+        "language": "en",
+        "synthetic": true,
+        "extraction_confidence": 0.99,
+        "field_confidences": {
+          "un_number": 0.99,
+          "imdg_class": 0.99,
+          "gross_weight_kg": 0.99
+        },
+        "document_version": 1
+      },
+      "product_name": "Synthetic Solvent-Based Coating",
+      "manufacturer": "SYNTHETIC SHANGHAI CHEMICAL CO",
+      "physical_properties": {
+        "flash_point_c": 30
+      },
+      "transport_information": {
+        "un_number": "UN1263",
+        "proper_shipping_name": "PAINT",
+        "imdg_class": "3",
+        "packing_group": "III",
+        "marine_pollutant": false
+      }
+    }
+  },
+  "fixture_type": "GOLDEN_NORMALIZED_CASE",
+  "source_documents": [
+    {
+      "document_type": "BOOKING_REQUEST",
+      "document_id": "TC-004-BOOKING_REQUEST",
+      "document_version": 1,
+      "path": "documents/TC-004/booking-request.md",
+      "synthetic": true
+    },
+    {
+      "document_type": "SDS_EXTRACT",
+      "document_id": "TC-004-SDS",
+      "document_version": 1,
+      "path": "documents/TC-004/sds.md",
+      "synthetic": true
+    }
+  ]
+}

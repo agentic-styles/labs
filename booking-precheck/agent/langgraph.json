@@ -1,0 +1,10 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": ["."],
+  "graphs": {
+    "booking_precheck": "./src/booking_precheck/studio.py:graph",
+    "booking_precheck_agent": "./src/booking_precheck/studio.py:graph",
+    "booking_precheck_rule_baseline": "./src/booking_precheck/baseline_studio.py:graph"
+  },
+  "env": ".env"
+}

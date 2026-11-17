@@ -1,0 +1,28 @@
+{
+  "case_id": "TC-003",
+  "title": "相同优先级规则动作冲突",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "GOV-RULE-CONFLICT"
+  ],
+  "expected_rule_ids": [
+    "GOV-RULE-CONFLICT"
+  ],
+  "expected_routing_queue": "POLICY_OWNER",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "evaluation.same_priority_conflict",
+      "expected_value": true
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+  "policy_fixture": {
+    "mode": "INJECT_EQUAL_PRIORITY_CONFLICT",
+    "rule_ids": [
+      "TEST-CONFLICT-ALLOW",
+      "TEST-CONFLICT-BLOCK"
+    ],
+    "note": "Both synthetic test rules apply with the same priority and opposite actions."
+  }
+}

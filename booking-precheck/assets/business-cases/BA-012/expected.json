@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-012",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "MANUAL_REVIEW",
+      "expected_reason_codes": [
+        "CAR-IBC-MANUAL-APPROVAL"
+      ],
+      "expected_rule_ids": [
+        "CAR-IBC-MANUAL-APPROVAL"
+      ],
+      "expected_routing_queues": [
+        "DG_DESK"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.dgd.declaration.package_type",
+          "expected_value": "IBC"
+        }
+      ],
+      "expected_next_action": "ROUTE_TO_DG_DESK",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    },
+    {
+      "step_id": "S2",
+      "expected_status": "PRECHECK_BLOCKED",
+      "expected_reason_codes": [
+        "CAR-IBC-MANUAL-APPROVAL"
+      ],
+      "expected_rule_ids": [
+        "CAR-IBC-MANUAL-APPROVAL"
+      ],
+      "expected_routing_queues": [],
+      "expected_evidence": [
+        {
+          "fact": "documents.dgd.declaration.package_type",
+          "expected_value": "IBC"
+        }
+      ],
+      "expected_next_action": "PAUSE_AUTOMATION",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-10-01",
+      "audit_assertions": [
+        {
+          "type": "PREVIOUS_RESULT_RETAINED",
+          "value": "S1"
+        },
+        {
+          "type": "SNAPSHOT_VERSION_USED",
+          "value": "TRAINING-LINE-CNSHA-AEJEA-2026-10-01"
+        },
+        {
+          "type": "CHANGED_RULE_IDENTIFIED",
+          "value": "CAR-IBC-MANUAL-APPROVAL"
+        }
+      ]
+    }
+  ]
+}

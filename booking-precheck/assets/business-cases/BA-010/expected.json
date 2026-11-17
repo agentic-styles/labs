@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-010",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "MANUAL_REVIEW",
+      "expected_reason_codes": [
+        "ROU-SNAPSHOT-SCOPE",
+        "GOV-SNAPSHOT-EXPIRED"
+      ],
+      "expected_rule_ids": [
+        "ROU-SNAPSHOT-SCOPE",
+        "GOV-SNAPSHOT-EXPIRED"
+      ],
+      "expected_routing_queues": [
+        "ROUTE_DESK",
+        "POLICY_OWNER"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.booking_request.route.port_of_loading.unlocode",
+          "expected_value": "CNYTN"
+        },
+        {
+          "fact": "documents.booking_request.route.etd",
+          "expected_value": "2027-01-05"
+        }
+      ],
+      "expected_next_action": "ROUTE_TO_ROUTE_DESK_AND_POLICY_OWNER",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    }
+  ]
+}

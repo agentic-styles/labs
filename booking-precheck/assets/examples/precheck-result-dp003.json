@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.1",
+  "run_id": "RUN-DP-003-001",
+  "trace_id": "TRACE-DP-003-001",
+  "technical_status": "COMPLETED",
+  "case_id": "TC-011",
+  "step_id": null,
+  "previous_run_id": null,
+  "booking_reference": "BK-TC-011",
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+  "started_at": "2026-08-17T09:00:00+08:00",
+  "completed_at": "2026-08-17T09:00:04+08:00",
+  "final_status": "MANUAL_REVIEW",
+  "reason_codes": [
+    "CON-BOOKING-DGD-UN"
+  ],
+  "routing_queues": [
+    "DG_DESK"
+  ],
+  "required_facts": [],
+  "pause_automation": false,
+  "next_action": "ROUTE_TO_DG_DESK",
+  "matched_rules": [
+    {
+      "rule_id": "CON-BOOKING-DGD-UN",
+      "reason_code": "CON-BOOKING-DGD-UN",
+      "rule_result_status": "MANUAL_REVIEW",
+      "message": "Booking Request and preliminary DGD UN Numbers must match.",
+      "routing_queue": "DG_DESK",
+      "pause_automation": false,
+      "fact_evidence_ids": [
+        "EV-DOC-001",
+        "EV-DOC-002"
+      ],
+      "policy_evidence_id": "EV-POL-001"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "EV-DOC-001",
+      "evidence_type": "DOCUMENT_FIELD",
+      "fact_path": "documents.booking_request.cargo.un_number",
+      "value": "UN1263",
+      "document_id": "TC-011-BOOKING_REQUEST",
+      "document_version": 1,
+      "document_type": "BOOKING_REQUEST",
+      "policy_document_id": null,
+      "rule_id": null,
+      "page": 1,
+      "section": "Cargo declaration",
+      "evidence_text": "UN1263",
+      "confidence": 0.99
+    },
+    {
+      "evidence_id": "EV-DOC-002",
+      "evidence_type": "DOCUMENT_FIELD",
+      "fact_path": "documents.dgd.declaration.un_number",
+      "value": "UN1866",
+      "document_id": "TC-011-DGD",
+      "document_version": 1,
+      "document_type": "PRELIMINARY_DGD",
+      "policy_document_id": null,
+      "rule_id": null,
+      "page": 1,
+      "section": "Dangerous goods description",
+      "evidence_text": "UN1866",
+      "confidence": 0.99
+    },
+    {
+      "evidence_id": "EV-POL-001",
+      "evidence_type": "POLICY_RULE",
+      "fact_path": null,
+      "value": "CON-BOOKING-DGD-UN",
+      "document_id": null,
+      "document_version": null,
+      "document_type": null,
+      "policy_document_id": "POL-002",
+      "rule_id": "CON-BOOKING-DGD-UN",
+      "page": 2,
+      "section": "Booking and preliminary DGD UN Number consistency",
+      "evidence_text": "Booking Request and preliminary DGD UN Numbers must match.",
+      "confidence": null
+    }
+  ],
+  "audit_context": {
+    "fact_snapshot_ref": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "fact_snapshot_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "observed_fact_count": 2,
+    "source_documents": [
+      {
+        "document_id": "TC-011-BOOKING_REQUEST",
+        "document_version": 1,
+        "document_type": "BOOKING_REQUEST"
+      },
+      {
+        "document_id": "TC-011-DGD",
+        "document_version": 1,
+        "document_type": "PRELIMINARY_DGD"
+      }
+    ]
+  },
+  "metrics": {
+    "duration_ms": 4000,
+    "model_call_count": 1,
+    "input_tokens": 3200,
+    "output_tokens": 900
+  },
+  "technical_error": null
+}

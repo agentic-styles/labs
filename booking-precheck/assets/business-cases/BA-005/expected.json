@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-005",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "MANUAL_REVIEW",
+      "expected_reason_codes": [
+        "CON-GROSS-WEIGHT"
+      ],
+      "expected_rule_ids": [
+        "CON-GROSS-WEIGHT"
+      ],
+      "expected_routing_queues": [
+        "DOCUMENT_DESK"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.booking_request.cargo.gross_weight_kg",
+          "expected_value": 10201
+        },
+        {
+          "fact": "documents.dgd.declaration.gross_weight_kg",
+          "expected_value": 10000
+        }
+      ],
+      "expected_next_action": "ROUTE_TO_DOCUMENT_DESK",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    },
+    {
+      "step_id": "S2",
+      "expected_status": "PRECHECK_PASS",
+      "expected_reason_codes": [],
+      "expected_rule_ids": [],
+      "expected_routing_queues": [],
+      "expected_evidence": [
+        {
+          "fact": "documents.booking_request.metadata.document_version",
+          "expected_value": 2,
+          "source_document_id": "BA-005-BOOKING-REQUEST-V2"
+        }
+      ],
+      "expected_next_action": "FORWARD_TO_DG_DESK",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": [
+        {
+          "type": "PREVIOUS_RESULT_RETAINED",
+          "value": "S1"
+        },
+        {
+          "type": "DOCUMENT_VERSION_USED",
+          "value": 2
+        }
+      ]
+    }
+  ]
+}

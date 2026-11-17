@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-012",
+  "title": "在授权的新快照下重放 IBC 票单",
+  "base_fixture_path": "../../cases/TC-028/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "SYSTEM",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": []
+    },
+    {
+      "step_id": "S2",
+      "actor": "POLICY_OWNER",
+      "trigger": "REPLAY",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [],
+      "policy_variant": {
+        "variant_id": "PV-001",
+        "variant_path": "../../policy-variants/PV-001-ibc-block.json",
+        "base_snapshot_path": "../../policy_snapshot.json",
+        "snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-10-01",
+        "rule_overrides": [
+          {
+            "rule_id": "CAR-IBC-MANUAL-APPROVAL",
+            "action": {
+              "result_status": "PRECHECK_BLOCKED",
+              "routing_queue": null,
+              "pause_automation": true
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

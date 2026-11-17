@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-009",
+  "title": "目的设施停收与 SDS Extract 过期同时命中",
+  "base_fixture_path": "../../cases/TC-029/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/sds/metadata/issued_at",
+          "value": "2024-08-09"
+        }
+      ]
+    }
+  ]
+}

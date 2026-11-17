@@ -1,0 +1,475 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.training/schemas/precheck-result-0.1.json",
+  "title": "Booking Precheck Result",
+  "description": "Single-Agent 与后续 Multi-Agent 实现共同遵守的业务输出契约。技术失败与业务状态严格分离。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "trace_id",
+    "technical_status",
+    "case_id",
+    "step_id",
+    "previous_run_id",
+    "booking_reference",
+    "policy_snapshot_id",
+    "started_at",
+    "completed_at",
+    "final_status",
+    "reason_codes",
+    "routing_queues",
+    "required_facts",
+    "pause_automation",
+    "next_action",
+    "matched_rules",
+    "evidence",
+    "audit_context",
+    "metrics",
+    "technical_error"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "technical_status": {
+      "enum": [
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "case_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "step_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "previous_run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "booking_reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "final_status": {
+      "anyOf": [
+        {
+          "enum": [
+            "PRECHECK_PASS",
+            "REQUIRE_INFORMATION",
+            "MANUAL_REVIEW",
+            "PRECHECK_BLOCKED"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "routing_queues": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "DOCUMENT_DESK",
+          "DG_DESK",
+          "ROUTE_DESK",
+          "POLICY_OWNER"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "required_facts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "pause_automation": {
+      "type": "boolean"
+    },
+    "next_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "matched_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/matchedRule"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "audit_context": {
+      "$ref": "#/$defs/auditContext"
+    },
+    "metrics": {
+      "$ref": "#/$defs/metrics"
+    },
+    "technical_error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/technicalError"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "technical_status": {
+            "const": "COMPLETED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "final_status": {
+            "enum": [
+              "PRECHECK_PASS",
+              "REQUIRE_INFORMATION",
+              "MANUAL_REVIEW",
+              "PRECHECK_BLOCKED"
+            ]
+          },
+          "technical_error": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "technical_status": {
+            "const": "FAILED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "final_status": {
+            "type": "null"
+          },
+          "reason_codes": {
+            "maxItems": 0
+          },
+          "routing_queues": {
+            "maxItems": 0
+          },
+          "matched_rules": {
+            "maxItems": 0
+          },
+          "pause_automation": {
+            "const": false
+          },
+          "technical_error": {
+            "$ref": "#/$defs/technicalError"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "matchedRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "reason_code",
+        "rule_result_status",
+        "message",
+        "routing_queue",
+        "pause_automation",
+        "fact_evidence_ids",
+        "policy_evidence_id"
+      ],
+      "properties": {
+        "rule_id": {
+          "type": "string"
+        },
+        "reason_code": {
+          "type": "string"
+        },
+        "rule_result_status": {
+          "enum": [
+            "REQUIRE_INFORMATION",
+            "MANUAL_REVIEW",
+            "PRECHECK_BLOCKED"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "routing_queue": {
+          "enum": [
+            "DOCUMENT_DESK",
+            "DG_DESK",
+            "ROUTE_DESK",
+            "POLICY_OWNER",
+            null
+          ]
+        },
+        "pause_automation": {
+          "type": "boolean"
+        },
+        "fact_evidence_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "policy_evidence_id": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "evidence_type",
+        "fact_path",
+        "value",
+        "document_id",
+        "document_version",
+        "document_type",
+        "policy_document_id",
+        "rule_id",
+        "page",
+        "section",
+        "evidence_text",
+        "confidence"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_type": {
+          "enum": [
+            "DOCUMENT_FIELD",
+            "ASSERTED_ABSENCE",
+            "POLICY_RULE",
+            "HUMAN_CONFIRMATION"
+          ]
+        },
+        "fact_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {},
+        "document_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "document_version": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "document_type": {
+          "enum": [
+            "BOOKING_REQUEST",
+            "PRELIMINARY_DGD",
+            "SDS_EXTRACT",
+            null
+          ]
+        },
+        "policy_document_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rule_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "page": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "section": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "auditContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fact_snapshot_ref",
+        "fact_snapshot_sha256",
+        "observed_fact_count",
+        "source_documents"
+      ],
+      "properties": {
+        "fact_snapshot_ref": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "fact_snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "observed_fact_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_documents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "document_id",
+              "document_version",
+              "document_type"
+            ],
+            "properties": {
+              "document_id": {
+                "type": "string"
+              },
+              "document_version": {
+                "type": ["integer", "null"],
+                "minimum": 1
+              },
+              "document_type": {
+                "enum": ["BOOKING_REQUEST", "PRELIMINARY_DGD", "SDS_EXTRACT", null]
+              }
+            }
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration_ms",
+        "model_call_count",
+        "input_tokens",
+        "output_tokens"
+      ],
+      "properties": {
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "model_call_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "technicalError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message",
+        "failed_stage",
+        "retryable"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "failed_stage": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

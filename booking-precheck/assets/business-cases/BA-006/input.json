@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-006",
+  "title": "同时缺少收货人与 SDS Extract",
+  "base_fixture_path": "../../cases/TC-001/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "remove",
+          "path": "/documents/booking_request/parties/1"
+        },
+        {
+          "op": "replace",
+          "path": "/documents/sds",
+          "value": null
+        }
+      ]
+    }
+  ]
+}

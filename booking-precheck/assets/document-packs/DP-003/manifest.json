@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "DP-003",
+  "case_ref": "TC-011",
+  "canonical_fixture_path": "../../cases/TC-011/input.json",
+  "ground_truth_path": "ground-truth.json",
+  "policy_document_ids": [
+    "POL-002"
+  ],
+  "stages": [
+    {
+      "stage_id": "S1",
+      "expected_status": "MANUAL_REVIEW",
+      "documents": [
+        {
+          "document_type": "BOOKING_REQUEST",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "BR-PORTAL-A",
+          "source_path": "source/booking-request.md",
+          "pdf_path": "output/pdf/booking-request.pdf"
+        },
+        {
+          "document_type": "PRELIMINARY_DGD",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "DGD-FORM-B",
+          "source_path": "source/preliminary-dgd.md",
+          "pdf_path": "output/pdf/preliminary-dgd.pdf"
+        },
+        {
+          "document_type": "SDS_EXTRACT",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "SDS-EXTRACT-B",
+          "source_path": "source/sds-extract.md",
+          "pdf_path": "output/pdf/sds-extract.pdf"
+        }
+      ]
+    }
+  ]
+}

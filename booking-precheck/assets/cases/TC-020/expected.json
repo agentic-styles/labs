@@ -1,0 +1,20 @@
+{
+  "case_id": "TC-020",
+  "title": "Class 3 货物低于闪点阈值",
+  "expected_status": "PRECHECK_BLOCKED",
+  "expected_reason_codes": [
+    "CAR-LOW-FLASH-POINT-BLOCK"
+  ],
+  "expected_rule_ids": [
+    "CAR-LOW-FLASH-POINT-BLOCK"
+  ],
+  "expected_routing_queue": null,
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.sds.physical_properties.flash_point_c",
+      "expected_value": -18.1
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

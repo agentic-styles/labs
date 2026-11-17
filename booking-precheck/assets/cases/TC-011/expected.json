@@ -1,0 +1,24 @@
+{
+  "case_id": "TC-011",
+  "title": "Booking Request 与 DGD 的 UN Number 不一致",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "CON-BOOKING-DGD-UN"
+  ],
+  "expected_rule_ids": [
+    "CON-BOOKING-DGD-UN"
+  ],
+  "expected_routing_queue": "DG_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.cargo.un_number",
+      "expected_value": "UN1263"
+    },
+    {
+      "fact": "documents.dgd.declaration.un_number",
+      "expected_value": "UN1866"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

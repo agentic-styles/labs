@@ -1,0 +1,24 @@
+{
+  "case_id": "TC-025",
+  "title": "DGD 与 SDS 的 Packing Group 不一致",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "CON-PACKING-GROUP"
+  ],
+  "expected_rule_ids": [
+    "CON-PACKING-GROUP"
+  ],
+  "expected_routing_queue": "DG_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.dgd.declaration.packing_group",
+      "expected_value": "III"
+    },
+    {
+      "fact": "documents.sds.transport_information.packing_group",
+      "expected_value": "II"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

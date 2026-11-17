@@ -1,0 +1,22 @@
+{
+  "case_id": "TC-017",
+  "title": "Class 3 货物缺少可用闪点",
+  "expected_status": "REQUIRE_INFORMATION",
+  "expected_reason_codes": [
+    "CON-FLASH-POINT"
+  ],
+  "expected_rule_ids": [
+    "CON-FLASH-POINT"
+  ],
+  "expected_routing_queue": "DG_DESK",
+  "expected_required_facts": [
+    "documents.sds.physical_properties.flash_point_c"
+  ],
+  "expected_evidence": [
+    {
+      "fact": "documents.sds.physical_properties.flash_point_c",
+      "expected_value": null
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

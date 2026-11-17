@@ -1,0 +1,20 @@
+{
+  "case_id": "TC-023",
+  "title": "合作伙伴运营船舶需要人工批准",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "ROU-PARTNER-OPERATOR"
+  ],
+  "expected_rule_ids": [
+    "ROU-PARTNER-OPERATOR"
+  ],
+  "expected_routing_queue": "ROUTE_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.vessel_operator_code",
+      "expected_value": "PARTNER-DEMO"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

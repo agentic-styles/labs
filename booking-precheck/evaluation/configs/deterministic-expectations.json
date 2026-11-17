@@ -1,0 +1,72 @@
+{
+  "schema_version": "1",
+  "purpose": "Reviewed migration regression expectations for the deterministic document baseline. These seven evidence failures are known limitations, not acceptable target quality or LLM benchmark results. Any change requires explicit review.",
+  "known_document_failures": {
+    "DP-002:S1": {
+      "failed_checks": {
+        "evidence_integrity": false
+      },
+      "evidence_errors": [
+        "DOC-DGD-REQUIRED: incomplete document evidence FACT-001"
+      ]
+    },
+    "DP-003:S1": {
+      "failed_checks": {
+        "evidence_integrity": false
+      },
+      "evidence_errors": [
+        "CON-BOOKING-DGD-UN: incomplete document evidence FACT-001",
+        "CON-BOOKING-DGD-UN: incomplete document evidence FACT-002"
+      ]
+    },
+    "DP-004:S1": {
+      "failed_checks": {
+        "evidence_integrity": false
+      },
+      "evidence_errors": [
+        "ROU-PARTNER-OPERATOR: incomplete document evidence FACT-001",
+        "CON-GROSS-WEIGHT: incomplete document evidence FACT-003",
+        "CON-GROSS-WEIGHT: incomplete document evidence FACT-004"
+      ]
+    },
+    "DP-005:S1": {
+      "failed_checks": {
+        "evidence_integrity": false
+      },
+      "evidence_errors": [
+        "CAR-CLASS-7-BLOCK: incomplete document evidence FACT-001",
+        "DOC-DGD-SIGNATURE: incomplete document evidence FACT-003",
+        "DOC-DGD-SIGNATURE: incomplete document evidence FACT-004"
+      ]
+    },
+    "DP-006:S1": {
+      "failed_checks": {
+        "evidence_integrity": false
+      },
+      "evidence_errors": [
+        "PORT-TEMPORARY-DG-SUSPENSION: incomplete document evidence FACT-001",
+        "PORT-TEMPORARY-DG-SUSPENSION: incomplete document evidence FACT-002",
+        "DOC-SDS-FRESHNESS: incomplete document evidence FACT-004",
+        "DOC-SDS-FRESHNESS: incomplete document evidence FACT-005",
+        "DOC-SDS-FRESHNESS: incomplete document evidence FACT-006"
+      ]
+    },
+    "DP-007:S1": {
+      "failed_checks": {
+        "evidence_integrity": false
+      },
+      "evidence_errors": [
+        "DOC-SDS-REQUIRED: incomplete document evidence FACT-001",
+        "DOC-CONSIGNEE-REQUIRED: incomplete document evidence FACT-004"
+      ]
+    },
+    "DP-008:S1": {
+      "failed_checks": {
+        "evidence_integrity": false
+      },
+      "evidence_errors": [
+        "DOC-DGD-REQUIRED: incomplete document evidence FACT-001"
+      ]
+    }
+  }
+}

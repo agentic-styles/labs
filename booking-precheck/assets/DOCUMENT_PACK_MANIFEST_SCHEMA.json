@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.training/schemas/document-pack-manifest-0.1.json",
+  "title": "Booking Precheck Document Pack Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pack_id",
+    "case_ref",
+    "canonical_fixture_path",
+    "ground_truth_path",
+    "stages"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "pack_id": {
+      "type": "string",
+      "pattern": "^DP-[0-9]{3}$"
+    },
+    "case_ref": {
+      "type": "string",
+      "pattern": "^(TC|BA)-[0-9]{3}$"
+    },
+    "canonical_fixture_path": {
+      "type": "string"
+    },
+    "ground_truth_path": {
+      "type": "string"
+    },
+    "policy_document_ids": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "POL-001",
+          "POL-002",
+          "POL-003"
+        ]
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/stage"
+      }
+    }
+  },
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage_id",
+        "expected_status",
+        "documents"
+      ],
+      "properties": {
+        "stage_id": {
+          "type": "string",
+          "pattern": "^S[0-9]+$"
+        },
+        "business_step_id": {
+          "type": "string",
+          "pattern": "^S[0-9]+$"
+        },
+        "expected_status": {
+          "enum": [
+            "PRECHECK_PASS",
+            "REQUIRE_INFORMATION",
+            "MANUAL_REVIEW",
+            "PRECHECK_BLOCKED"
+          ]
+        },
+        "documents": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/document"
+          }
+        }
+      }
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "document_type",
+        "present",
+        "template_variant"
+      ],
+      "properties": {
+        "document_type": {
+          "enum": [
+            "BOOKING_REQUEST",
+            "PRELIMINARY_DGD",
+            "SDS_EXTRACT"
+          ]
+        },
+        "present": {
+          "type": "boolean"
+        },
+        "document_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "template_variant": {
+          "enum": [
+            "BR-PORTAL-A",
+            "BR-EMAIL-B",
+            "DGD-FORM-A",
+            "DGD-FORM-B",
+            "SDS-EXTRACT-A",
+            "SDS-EXTRACT-B",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "source_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pdf_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": "TC-001",
+  "title": "完整且一致的危险品订舱通过预审",
+  "expected_status": "PRECHECK_PASS",
+  "expected_reason_codes": [],
+  "expected_rule_ids": [],
+  "expected_routing_queue": null,
+  "expected_required_facts": [],
+  "expected_evidence": [],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

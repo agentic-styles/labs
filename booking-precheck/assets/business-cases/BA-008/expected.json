@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-008",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "MANUAL_REVIEW",
+      "expected_reason_codes": [
+        "CON-GROSS-WEIGHT",
+        "ROU-PARTNER-OPERATOR"
+      ],
+      "expected_rule_ids": [
+        "CON-GROSS-WEIGHT",
+        "ROU-PARTNER-OPERATOR"
+      ],
+      "expected_routing_queues": [
+        "DOCUMENT_DESK",
+        "ROUTE_DESK"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.booking_request.cargo.gross_weight_kg",
+          "expected_value": 10201
+        },
+        {
+          "fact": "documents.dgd.declaration.gross_weight_kg",
+          "expected_value": 10000
+        },
+        {
+          "fact": "documents.booking_request.vessel_operator_code",
+          "expected_value": "PARTNER-TRAINING"
+        }
+      ],
+      "expected_next_action": "ROUTE_TO_ALL_REQUIRED_QUEUES",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    }
+  ]
+}

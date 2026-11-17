@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-004",
+  "title": "缺少 DGD 后补交并恢复通过",
+  "base_fixture_path": "../../cases/TC-001/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/dgd",
+          "value": null
+        }
+      ]
+    },
+    {
+      "step_id": "S2",
+      "actor": "CUSTOMER",
+      "trigger": "RESUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [],
+      "notes": "客户补交完整的 Preliminary DGD。"
+    }
+  ]
+}

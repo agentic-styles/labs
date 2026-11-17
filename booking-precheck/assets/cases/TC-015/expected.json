@@ -1,0 +1,24 @@
+{
+  "case_id": "TC-015",
+  "title": "Booking 与 DGD 的件数不一致",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "CON-PACKAGE-COUNT"
+  ],
+  "expected_rule_ids": [
+    "CON-PACKAGE-COUNT"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.cargo.total_packages",
+      "expected_value": 100
+    },
+    {
+      "fact": "documents.dgd.declaration.total_packages",
+      "expected_value": 96
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-004",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "REQUIRE_INFORMATION",
+      "expected_reason_codes": [
+        "DOC-DGD-REQUIRED"
+      ],
+      "expected_rule_ids": [
+        "DOC-DGD-REQUIRED"
+      ],
+      "expected_routing_queues": [
+        "DOCUMENT_DESK"
+      ],
+      "expected_required_facts": [
+        "documents.dgd"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.dgd",
+          "expected_value": null
+        }
+      ],
+      "expected_next_action": "REQUEST_PRELIMINARY_DGD",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    },
+    {
+      "step_id": "S2",
+      "expected_status": "PRECHECK_PASS",
+      "expected_reason_codes": [],
+      "expected_rule_ids": [],
+      "expected_routing_queues": [],
+      "expected_evidence": [],
+      "expected_next_action": "FORWARD_TO_DG_DESK",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": [
+        {
+          "type": "PREVIOUS_RESULT_RETAINED",
+          "value": "S1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,752 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.training/schemas/booking-precheck-fixture-0.2.json",
+  "title": "Booking Precheck Golden Test Fixture",
+  "description": "教学测试信封：包含系统注入的策略上下文和从三类源单证归一化得到的事实。它不是客户直接提交的 Booking 格式。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "fixture_type",
+    "case_id",
+    "submitted_at",
+    "policy_context",
+    "documents"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2"
+    },
+    "fixture_type": {
+      "const": "GOLDEN_NORMALIZED_CASE"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^(TC|BA)-[0-9]{3}$"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policy_context": {
+      "$ref": "#/$defs/policyContext"
+    },
+    "source_documents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceDocument"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "documents": {
+      "description": "Agent 提取后的归一化单证事实；Golden Dataset 中的值是评分基线。",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "booking_request",
+        "dgd",
+        "sds"
+      ],
+      "properties": {
+        "booking_request": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/bookingRequest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dgd": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/dgd"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sds": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sdsExtract"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "policyContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "carrier_code",
+        "route_id",
+        "training_only"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9-]+$",
+          "examples": [
+            "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+          ]
+        },
+        "carrier_code": {
+          "const": "TRAINING-LINE"
+        },
+        "route_id": {
+          "const": "CNSHA-AEJEA-TRAIN-ME1"
+        },
+        "training_only": {
+          "const": true
+        }
+      }
+    },
+    "sourceDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "document_type",
+        "document_id",
+        "document_version",
+        "path",
+        "synthetic"
+      ],
+      "properties": {
+        "document_type": {
+          "enum": [
+            "BOOKING_REQUEST",
+            "PRELIMINARY_DGD",
+            "SDS_EXTRACT"
+          ]
+        },
+        "document_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "document_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "const": true
+        }
+      }
+    },
+    "documentMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "document_id",
+        "document_version",
+        "document_type",
+        "file_name",
+        "issued_at",
+        "language",
+        "synthetic"
+      ],
+      "properties": {
+        "document_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "document_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "supersedes_document_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80,
+          "default": null
+        },
+        "document_type": {
+          "enum": [
+            "BOOKING_REQUEST",
+            "PRELIMINARY_DGD",
+            "SDS_EXTRACT"
+          ]
+        },
+        "file_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "mime_type": {
+          "type": "string",
+          "default": "application/json"
+        },
+        "issued_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        },
+        "synthetic": {
+          "const": true
+        },
+        "extraction_confidence": {
+          "description": "预置或模拟值，不用于评测 OCR 引擎。",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "field_confidences": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-zA-Z0-9_.*-]+(\\.[a-zA-Z0-9_.*-]+)*$"
+          },
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "default": {}
+        }
+      }
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "port_of_loading",
+        "port_of_discharge",
+        "etd",
+        "eta"
+      ],
+      "properties": {
+        "port_of_loading": {
+          "$ref": "#/$defs/location"
+        },
+        "port_of_discharge": {
+          "$ref": "#/$defs/location"
+        },
+        "transshipment_ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/location"
+          },
+          "default": []
+        },
+        "etd": {
+          "type": "string",
+          "format": "date"
+        },
+        "eta": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unlocode",
+        "facility_code"
+      ],
+      "properties": {
+        "unlocode": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}[A-Z0-9]{3}$"
+        },
+        "facility_code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        }
+      }
+    },
+    "party": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "party_id",
+        "role",
+        "name",
+        "country_code",
+        "synthetic"
+      ],
+      "properties": {
+        "party_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "role": {
+          "enum": [
+            "SHIPPER",
+            "CONSIGNEE",
+            "NOTIFY_PARTY"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "country_code": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "default": []
+        },
+        "synthetic": {
+          "const": true
+        }
+      }
+    },
+    "identifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "REGISTRATION_NUMBER",
+            "TAX_ID",
+            "CUSTOMER_ID",
+            "VESSEL_IMO"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      }
+    },
+    "bookingCargo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "commodity_code",
+        "is_dangerous_goods",
+        "un_number",
+        "proper_shipping_name",
+        "imdg_class",
+        "packing_group",
+        "marine_pollutant",
+        "total_packages",
+        "package_type",
+        "net_weight_kg",
+        "gross_weight_kg"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "commodity_code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "hs_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9]{6,10}$"
+        },
+        "is_dangerous_goods": {
+          "type": "boolean"
+        },
+        "un_number": {
+          "$ref": "#/$defs/nullableUnNumber"
+        },
+        "proper_shipping_name": {
+          "$ref": "#/$defs/nullablePsn"
+        },
+        "imdg_class": {
+          "$ref": "#/$defs/nullableImdgClass"
+        },
+        "subsidiary_risks": {
+          "$ref": "#/$defs/subsidiaryRisks"
+        },
+        "packing_group": {
+          "$ref": "#/$defs/packingGroup"
+        },
+        "marine_pollutant": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "flash_point_c": {
+          "$ref": "#/$defs/nullableTemperature"
+        },
+        "total_packages": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "package_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "net_weight_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gross_weight_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "dgdDeclaration": {
+      "description": "初步 DGD 的申报事实，不包含 Booking 内部商品代码、HS Code 或 is_dangerous_goods 标志。",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "un_number",
+        "proper_shipping_name",
+        "imdg_class",
+        "packing_group",
+        "marine_pollutant",
+        "total_packages",
+        "package_type",
+        "net_weight_kg",
+        "gross_weight_kg"
+      ],
+      "properties": {
+        "un_number": {
+          "$ref": "#/$defs/nullableUnNumber"
+        },
+        "proper_shipping_name": {
+          "$ref": "#/$defs/nullablePsn"
+        },
+        "imdg_class": {
+          "$ref": "#/$defs/nullableImdgClass"
+        },
+        "subsidiary_risks": {
+          "$ref": "#/$defs/subsidiaryRisks"
+        },
+        "packing_group": {
+          "$ref": "#/$defs/packingGroup"
+        },
+        "marine_pollutant": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "total_packages": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "package_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "net_weight_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gross_weight_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "nullableUnNumber": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^UN[0-9]{4}$"
+    },
+    "nullablePsn": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 300
+    },
+    "nullableImdgClass": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[1-9](\\.[1-6])?$"
+    },
+    "subsidiaryRisks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[1-9](\\.[1-6])?$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "packingGroup": {
+      "enum": [
+        "I",
+        "II",
+        "III",
+        null
+      ]
+    },
+    "nullableTemperature": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": -273.15,
+      "maximum": 500
+    },
+    "equipment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "container_type",
+        "quantity"
+      ],
+      "properties": {
+        "container_type": {
+          "enum": [
+            "20GP",
+            "40GP",
+            "40HQ",
+            "20RF",
+            "40RF"
+          ]
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "reefer_settings": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/reeferSettings"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      }
+    },
+    "reeferSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "temperature_c"
+      ],
+      "properties": {
+        "temperature_c": {
+          "type": "number",
+          "minimum": -40,
+          "maximum": 40
+        },
+        "ventilation_cbm_h": {
+          "type": "number",
+          "minimum": 0
+        },
+        "humidity_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "bookingRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metadata",
+        "booking_reference",
+        "carrier_code",
+        "vessel_operator_code",
+        "service_code",
+        "route",
+        "parties",
+        "cargo",
+        "equipment"
+      ],
+      "properties": {
+        "metadata": {
+          "$ref": "#/$defs/documentMetadata"
+        },
+        "booking_reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "carrier_code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "vessel_operator_code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "service_code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "route": {
+          "$ref": "#/$defs/route"
+        },
+        "parties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/party"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "cargo": {
+          "$ref": "#/$defs/bookingCargo"
+        },
+        "equipment": {
+          "$ref": "#/$defs/equipment"
+        }
+      }
+    },
+    "dgd": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metadata",
+        "booking_reference",
+        "declaration"
+      ],
+      "properties": {
+        "metadata": {
+          "$ref": "#/$defs/documentMetadata"
+        },
+        "booking_reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "declaration": {
+          "$ref": "#/$defs/dgdDeclaration"
+        },
+        "shipper_declaration_signed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "sdsExtract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metadata",
+        "product_name",
+        "manufacturer",
+        "physical_properties",
+        "transport_information"
+      ],
+      "properties": {
+        "metadata": {
+          "$ref": "#/$defs/documentMetadata"
+        },
+        "product_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "manufacturer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "physical_properties": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "flash_point_c"
+          ],
+          "properties": {
+            "flash_point_c": {
+              "$ref": "#/$defs/nullableTemperature"
+            }
+          }
+        },
+        "transport_information": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sdsTransportInformation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "sdsTransportInformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "un_number",
+        "proper_shipping_name",
+        "imdg_class",
+        "packing_group",
+        "marine_pollutant"
+      ],
+      "properties": {
+        "un_number": {
+          "$ref": "#/$defs/nullableUnNumber"
+        },
+        "proper_shipping_name": {
+          "$ref": "#/$defs/nullablePsn"
+        },
+        "imdg_class": {
+          "$ref": "#/$defs/nullableImdgClass"
+        },
+        "packing_group": {
+          "$ref": "#/$defs/packingGroup"
+        },
+        "marine_pollutant": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

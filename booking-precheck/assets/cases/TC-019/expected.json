@@ -1,0 +1,20 @@
+{
+  "case_id": "TC-019",
+  "title": "Class 7 货物被规则阻断",
+  "expected_status": "PRECHECK_BLOCKED",
+  "expected_reason_codes": [
+    "CAR-CLASS-7-BLOCK"
+  ],
+  "expected_rule_ids": [
+    "CAR-CLASS-7-BLOCK"
+  ],
+  "expected_routing_queue": null,
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.dgd.declaration.imdg_class",
+      "expected_value": "7"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

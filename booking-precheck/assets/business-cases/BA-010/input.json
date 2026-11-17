@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-010",
+  "title": "航线范围外且规则快照过期",
+  "base_fixture_path": "../../cases/TC-030/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/booking_request/route/port_of_loading/unlocode",
+          "value": "CNYTN"
+        },
+        {
+          "op": "replace",
+          "path": "/documents/booking_request/route/port_of_loading/facility_code",
+          "value": "CNYTN-TRAIN-T1"
+        }
+      ]
+    }
+  ]
+}

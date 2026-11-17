@@ -1,0 +1,22 @@
+{
+  "case_id": "TC-007",
+  "title": "DGD 缺少 Proper Shipping Name",
+  "expected_status": "REQUIRE_INFORMATION",
+  "expected_reason_codes": [
+    "DOC-DGD-PSN-REQUIRED"
+  ],
+  "expected_rule_ids": [
+    "DOC-DGD-PSN-REQUIRED"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [
+    "documents.dgd.declaration.proper_shipping_name"
+  ],
+  "expected_evidence": [
+    {
+      "fact": "documents.dgd.declaration.proper_shipping_name",
+      "expected_value": null
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

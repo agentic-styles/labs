@@ -1,0 +1,20 @@
+{
+  "case_id": "TC-021",
+  "title": "危险品使用冷箱订舱",
+  "expected_status": "PRECHECK_BLOCKED",
+  "expected_reason_codes": [
+    "CAR-REEFER-DG-BLOCK"
+  ],
+  "expected_rule_ids": [
+    "CAR-REEFER-DG-BLOCK"
+  ],
+  "expected_routing_queue": null,
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.equipment.container_type",
+      "expected_value": "40RF"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-002",
+  "title": "毛重差异恰好位于 2% 容差边界",
+  "base_fixture_path": "../../cases/TC-001/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/booking_request/cargo/gross_weight_kg",
+          "value": 10200
+        }
+      ]
+    }
+  ]
+}

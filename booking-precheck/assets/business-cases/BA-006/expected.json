@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-006",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "REQUIRE_INFORMATION",
+      "expected_reason_codes": [
+        "DOC-CONSIGNEE-REQUIRED",
+        "DOC-SDS-REQUIRED"
+      ],
+      "expected_rule_ids": [
+        "DOC-CONSIGNEE-REQUIRED",
+        "DOC-SDS-REQUIRED"
+      ],
+      "expected_routing_queues": [
+        "DOCUMENT_DESK"
+      ],
+      "expected_required_facts": [
+        "documents.booking_request.parties",
+        "documents.sds"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "evaluation.has_consignee",
+          "expected_value": false
+        },
+        {
+          "fact": "documents.sds",
+          "expected_value": null
+        }
+      ],
+      "expected_next_action": "REQUEST_ALL_MISSING_INFORMATION",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    }
+  ]
+}

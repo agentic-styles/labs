@@ -1,0 +1,24 @@
+{
+  "case_id": "TC-016",
+  "title": "Marine Pollutant 声明冲突",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "CON-MARINE-POLLUTANT"
+  ],
+  "expected_rule_ids": [
+    "CON-MARINE-POLLUTANT"
+  ],
+  "expected_routing_queue": "DG_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.dgd.declaration.marine_pollutant",
+      "expected_value": false
+    },
+    {
+      "fact": "documents.sds.transport_information.marine_pollutant",
+      "expected_value": true
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

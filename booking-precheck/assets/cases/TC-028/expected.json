@@ -1,0 +1,20 @@
+{
+  "case_id": "TC-028",
+  "title": "IBC 包装需要逐票审批",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "CAR-IBC-MANUAL-APPROVAL"
+  ],
+  "expected_rule_ids": [
+    "CAR-IBC-MANUAL-APPROVAL"
+  ],
+  "expected_routing_queue": "DG_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.dgd.declaration.package_type",
+      "expected_value": "IBC"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

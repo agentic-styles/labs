@@ -1,0 +1,22 @@
+{
+  "case_id": "TC-009",
+  "title": "SDS 已超过 24 个月",
+  "expected_status": "REQUIRE_INFORMATION",
+  "expected_reason_codes": [
+    "DOC-SDS-FRESHNESS"
+  ],
+  "expected_rule_ids": [
+    "DOC-SDS-FRESHNESS"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [
+    "documents.sds.metadata.issued_at"
+  ],
+  "expected_evidence": [
+    {
+      "fact": "documents.sds.metadata.issued_at",
+      "expected_value": "2024-08-09"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

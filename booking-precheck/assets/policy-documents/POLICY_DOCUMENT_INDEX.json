@@ -1,0 +1,176 @@
+{
+  "schema_version": "0.1",
+  "snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+  "documents": [
+    {
+      "policy_document_id": "POL-001",
+      "title": "Dangerous Goods Acceptance Guide",
+      "source_path": "policy-documents/POL-001/source.md",
+      "pdf_path": "policy-documents/POL-001/output/pdf/pol-001-dangerous-goods-acceptance-guide.pdf",
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "rule_evidence": [
+        {
+          "rule_id": "CAR-CLASS-1-BLOCK",
+          "page": 1,
+          "evidence_text": "TRAINING-LINE does not accept IMDG Class 1 on the teaching route."
+        },
+        {
+          "rule_id": "CAR-CLASS-7-BLOCK",
+          "page": 1,
+          "evidence_text": "TRAINING-LINE does not accept IMDG Class 7 on the teaching route."
+        },
+        {
+          "rule_id": "CAR-LOW-FLASH-POINT-BLOCK",
+          "page": 1,
+          "evidence_text": "TRAINING-LINE does not accept Class 3 cargo below -18\u00b0C flash point."
+        },
+        {
+          "rule_id": "CAR-REEFER-DG-BLOCK",
+          "page": 1,
+          "evidence_text": "TRAINING-LINE does not accept dangerous goods in reefer equipment on the teaching route."
+        },
+        {
+          "rule_id": "CAR-IBC-MANUAL-APPROVAL",
+          "page": 2,
+          "evidence_text": "IBC packaging requires case-by-case approval from the teaching DG Desk."
+        }
+      ]
+    },
+    {
+      "policy_document_id": "POL-002",
+      "title": "Booking Precheck Documentation and Consistency Standard",
+      "source_path": "policy-documents/POL-002/source.md",
+      "pdf_path": "policy-documents/POL-002/output/pdf/pol-002-booking-precheck-documentation-and-consistency-standard.pdf",
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "rule_evidence": [
+        {
+          "rule_id": "DOC-DGD-REQUIRED",
+          "page": 1,
+          "evidence_text": "Dangerous-goods bookings must provide a preliminary DGD."
+        },
+        {
+          "rule_id": "DOC-SDS-REQUIRED",
+          "page": 1,
+          "evidence_text": "Dangerous-goods bookings must provide an SDS Extract."
+        },
+        {
+          "rule_id": "DOC-DGD-UN-REQUIRED",
+          "page": 1,
+          "evidence_text": "The preliminary DGD must contain a valid UN Number."
+        },
+        {
+          "rule_id": "DOC-DGD-PSN-REQUIRED",
+          "page": 1,
+          "evidence_text": "The preliminary DGD must contain a Proper Shipping Name."
+        },
+        {
+          "rule_id": "DOC-SDS-S14-REQUIRED",
+          "page": 2,
+          "evidence_text": "The SDS Extract must contain transport information in Section 14."
+        },
+        {
+          "rule_id": "DOC-SDS-FRESHNESS",
+          "page": 2,
+          "evidence_text": "The SDS Extract must not be older than 24 months at submission."
+        },
+        {
+          "rule_id": "DOC-CONSIGNEE-REQUIRED",
+          "page": 2,
+          "evidence_text": "The Booking Request must identify a consignee."
+        },
+        {
+          "rule_id": "CON-BOOKING-DGD-UN",
+          "page": 2,
+          "evidence_text": "Booking Request and preliminary DGD UN Numbers must match."
+        },
+        {
+          "rule_id": "CON-DGD-SDS-UN",
+          "page": 3,
+          "evidence_text": "preliminary DGD and SDS Extract UN Numbers must match."
+        },
+        {
+          "rule_id": "CON-DGD-SDS-CLASS",
+          "page": 3,
+          "evidence_text": "preliminary DGD and SDS Extract IMDG classes must match."
+        },
+        {
+          "rule_id": "CON-GROSS-WEIGHT",
+          "page": 3,
+          "evidence_text": "Booking and preliminary DGD gross-weight variance must not exceed 2 percent."
+        },
+        {
+          "rule_id": "CON-PACKAGE-COUNT",
+          "page": 3,
+          "evidence_text": "Booking and preliminary DGD package counts must match."
+        },
+        {
+          "rule_id": "CON-MARINE-POLLUTANT",
+          "page": 4,
+          "evidence_text": "preliminary DGD and SDS Extract marine-pollutant declarations must match."
+        },
+        {
+          "rule_id": "CON-FLASH-POINT",
+          "page": 4,
+          "evidence_text": "Class 3 cargo must have a usable flash point in SDS Extract Section 9."
+        },
+        {
+          "rule_id": "ROU-SNAPSHOT-SCOPE",
+          "page": 4,
+          "evidence_text": "The teaching snapshot only covers CNSHA to AEJEA on TRAIN-ME1."
+        },
+        {
+          "rule_id": "ROU-PARTNER-OPERATOR",
+          "page": 4,
+          "evidence_text": "A partner-operated vessel requires manual route approval."
+        },
+        {
+          "rule_id": "TIM-DOCUMENT-CUTOFF",
+          "page": 5,
+          "evidence_text": "Documents must be submitted at least five working days before ETD."
+        },
+        {
+          "rule_id": "CON-PACKING-GROUP",
+          "page": 5,
+          "evidence_text": "preliminary DGD and SDS Extract Packing Groups must match."
+        },
+        {
+          "rule_id": "DOC-DGD-SIGNATURE",
+          "page": 5,
+          "evidence_text": "The preliminary DGD shipper declaration must be signed."
+        },
+        {
+          "rule_id": "DOC-KEY-FIELD-LOW-CONFIDENCE",
+          "page": 5,
+          "evidence_text": "A key extracted field below 0.80 confidence requires confirmation."
+        },
+        {
+          "rule_id": "GOV-SNAPSHOT-EXPIRED",
+          "page": 6,
+          "evidence_text": "A booking with ETD after snapshot expiry requires a current policy snapshot."
+        },
+        {
+          "rule_id": "GOV-RULE-CONFLICT",
+          "page": 6,
+          "evidence_text": "Conflicting actions from equal-priority applicable rules require policy-owner review."
+        }
+      ]
+    },
+    {
+      "policy_document_id": "POL-003",
+      "title": "Temporary Dangerous Goods Operations Notice",
+      "source_path": "policy-documents/POL-003/source.md",
+      "pdf_path": "policy-documents/POL-003/output/pdf/pol-003-temporary-dangerous-goods-operations-notice.pdf",
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "rule_evidence": [
+        {
+          "rule_id": "PORT-TEMPORARY-DG-SUSPENSION",
+          "page": 1,
+          "evidence_text": "AEJEA-TRAIN-T1 temporarily suspends dangerous-goods acceptance from 2026-09-10 through 2026-09-12."
+        }
+      ]
+    }
+  ]
+}

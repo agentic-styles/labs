@@ -1,0 +1,18 @@
+{
+  "assets_dir": "../../assets",
+  "output_dir": "../reports",
+  "repeat": 1,
+  "systems": {
+    "single_agent": {
+      "cwd": "../../agent",
+      "command": ["uv", "run", "booking-precheck"],
+      "env_file": "../../agent/.env",
+      "timeout_seconds": 180,
+      "suites": {
+        "document": {
+          "args": ["--agent-document-pack", "{pack_id}", "--stage", "{stage_id}"]
+        }
+      }
+    }
+  }
+}

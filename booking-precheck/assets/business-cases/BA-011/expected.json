@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-011",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "MANUAL_REVIEW",
+      "expected_reason_codes": [
+        "DOC-KEY-FIELD-LOW-CONFIDENCE"
+      ],
+      "expected_rule_ids": [
+        "DOC-KEY-FIELD-LOW-CONFIDENCE"
+      ],
+      "expected_routing_queues": [
+        "DOCUMENT_DESK"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.dgd.metadata.field_confidences.un_number",
+          "expected_value": 0.62,
+          "source_document_id": "TC-027-DGD"
+        }
+      ],
+      "expected_next_action": "PAUSE_FOR_DOCUMENT_REVIEW",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": []
+    },
+    {
+      "step_id": "S2",
+      "expected_status": "PRECHECK_PASS",
+      "expected_reason_codes": [],
+      "expected_rule_ids": [],
+      "expected_routing_queues": [],
+      "expected_evidence": [
+        {
+          "fact": "documents.dgd.declaration.un_number",
+          "expected_value": "UN1263",
+          "source_document_id": "TC-027-DGD"
+        }
+      ],
+      "expected_next_action": "FORWARD_TO_DG_DESK",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": [
+        {
+          "type": "PREVIOUS_RESULT_RETAINED",
+          "value": "S1"
+        },
+        {
+          "type": "HUMAN_CONFIRMATION_RECORDED",
+          "value": "documents.dgd.declaration.un_number"
+        }
+      ]
+    }
+  ]
+}

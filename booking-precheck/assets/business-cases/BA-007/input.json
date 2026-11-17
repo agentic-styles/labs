@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-007",
+  "title": "Class 7 阻断与 DGD 未签署同时命中",
+  "base_fixture_path": "../../cases/TC-019/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "CUSTOMER",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/dgd/shipper_declaration_signed",
+          "value": false
+        }
+      ]
+    }
+  ]
+}

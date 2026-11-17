@@ -1,0 +1,59 @@
+name: Test source-only labs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  booking-precheck:
+    runs-on: ubuntu-latest
+    env:
+      LANGSMITH_TRACING: 'false'
+      LANGCHAIN_TRACING_V2: 'false'
+      LANGFUSE_TRACING_ENABLED: 'false'
+    defaults:
+      run:
+        working-directory: booking-precheck
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Check source-only history and guard regression
+        working-directory: .
+        run: |
+          python3 scripts/check_source_policy.py
+          python3 -m unittest discover -s tests
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          version: '0.13.9'
+          python-version: '3.12'
+          enable-cache: true
+          cache-dependency-glob: booking-precheck/uv.lock
+      - name: Install locked workspace
+        run: uv sync --all-packages --all-extras --locked
+      - name: Rebuild and validate synthetic documents
+        run: uv run --locked python tools/generate_materials.py
+      - name: Test contracts, baseline and scoring
+        run: uv run --locked python -m pytest contracts/tests agent/tests evaluation/tests
+      - name: Run deterministic black-box evaluation
+        run: uv run --locked booking-precheck-eval run --config evaluation/configs/deterministic-smoke.json --output-dir .generated/evaluation
+      - name: Verify complete evaluation and unchanged source
+        run: |
+          python ../scripts/verify_evaluation.py .generated/evaluation
+          test -z "$(git status --porcelain)"
+      - name: Upload generated evidence outside Git
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: booking-precheck-generated-evidence
+          retention-days: 14
+          include-hidden-files: true
+          path: |
+            booking-precheck/.generated/materials-report.json
+            booking-precheck/.generated/evaluation/
+            booking-precheck/assets/**/output/pdf/*.pdf

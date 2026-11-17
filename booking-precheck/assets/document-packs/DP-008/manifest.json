@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "DP-008",
+  "case_ref": "BA-004",
+  "canonical_fixture_path": "../../business-cases/BA-004/input.json",
+  "ground_truth_path": "ground-truth.json",
+  "policy_document_ids": [
+    "POL-002"
+  ],
+  "stages": [
+    {
+      "stage_id": "S1",
+      "business_step_id": "S1",
+      "expected_status": "REQUIRE_INFORMATION",
+      "documents": [
+        {
+          "document_type": "BOOKING_REQUEST",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "BR-EMAIL-B",
+          "source_path": "stage-01/source/booking-request.md",
+          "pdf_path": "stage-01/output/pdf/booking-request.pdf"
+        },
+        {
+          "document_type": "PRELIMINARY_DGD",
+          "present": false,
+          "template_variant": "NOT_APPLICABLE",
+          "source_path": null,
+          "pdf_path": null
+        },
+        {
+          "document_type": "SDS_EXTRACT",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "SDS-EXTRACT-B",
+          "source_path": "stage-01/source/sds-extract.md",
+          "pdf_path": "stage-01/output/pdf/sds-extract.pdf"
+        }
+      ]
+    },
+    {
+      "stage_id": "S2",
+      "business_step_id": "S2",
+      "expected_status": "PRECHECK_PASS",
+      "documents": [
+        {
+          "document_type": "BOOKING_REQUEST",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "BR-EMAIL-B",
+          "source_path": "stage-02/source/booking-request.md",
+          "pdf_path": "stage-02/output/pdf/booking-request.pdf"
+        },
+        {
+          "document_type": "PRELIMINARY_DGD",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "DGD-FORM-B",
+          "source_path": "stage-02/source/preliminary-dgd.md",
+          "pdf_path": "stage-02/output/pdf/preliminary-dgd.pdf"
+        },
+        {
+          "document_type": "SDS_EXTRACT",
+          "present": true,
+          "document_version": 1,
+          "template_variant": "SDS-EXTRACT-B",
+          "source_path": "stage-02/source/sds-extract.md",
+          "pdf_path": "stage-02/output/pdf/sds-extract.pdf"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "case_id": "TC-027",
+  "title": "DGD 关键字段抽取置信度过低",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "DOC-KEY-FIELD-LOW-CONFIDENCE"
+  ],
+  "expected_rule_ids": [
+    "DOC-KEY-FIELD-LOW-CONFIDENCE"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.dgd.metadata.field_confidences.un_number",
+      "expected_value": 0.62
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

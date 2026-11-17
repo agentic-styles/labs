@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-007",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "PRECHECK_BLOCKED",
+      "expected_reason_codes": [
+        "CAR-CLASS-7-BLOCK",
+        "DOC-DGD-SIGNATURE"
+      ],
+      "expected_rule_ids": [
+        "CAR-CLASS-7-BLOCK",
+        "DOC-DGD-SIGNATURE"
+      ],
+      "expected_routing_queues": [
+        "DOCUMENT_DESK"
+      ],
+      "expected_required_facts": [
+        "documents.dgd.shipper_declaration_signed"
+      ],
+      "expected_evidence": [
+        {
+          "fact": "documents.dgd.declaration.imdg_class",
+          "expected_value": "7"
+        },
+        {
+          "fact": "documents.dgd.shipper_declaration_signed",
+          "expected_value": false
+        }
+      ],
+      "expected_next_action": "PAUSE_AUTOMATION_AND_REPORT_ALL_FINDINGS",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": [
+        {
+          "type": "PRECHECK_NOT_FINAL_APPROVAL",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

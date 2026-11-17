@@ -1,0 +1,22 @@
+{
+  "case_id": "TC-005",
+  "title": "缺少安全数据表",
+  "expected_status": "REQUIRE_INFORMATION",
+  "expected_reason_codes": [
+    "DOC-SDS-REQUIRED"
+  ],
+  "expected_rule_ids": [
+    "DOC-SDS-REQUIRED"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [
+    "documents.sds"
+  ],
+  "expected_evidence": [
+    {
+      "fact": "documents.sds",
+      "expected_value": null
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

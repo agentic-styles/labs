@@ -1,0 +1,37 @@
+{
+  "case_id": "TC-010",
+  "title": "Booking Request 缺少收货人",
+  "expected_status": "REQUIRE_INFORMATION",
+  "expected_reason_codes": [
+    "DOC-CONSIGNEE-REQUIRED"
+  ],
+  "expected_rule_ids": [
+    "DOC-CONSIGNEE-REQUIRED"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [
+    "documents.booking_request.parties"
+  ],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.parties",
+      "expected_value": [
+        {
+          "party_id": "TC-010-SHIPPER",
+          "role": "SHIPPER",
+          "name": "SYNTHETIC SHANGHAI CHEMICAL CO",
+          "country_code": "CN",
+          "address": "100 Training Road, Shanghai",
+          "identifiers": [
+            {
+              "type": "CUSTOMER_ID",
+              "value": "CUST-TC-010-S"
+            }
+          ],
+          "synthetic": true
+        }
+      ]
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

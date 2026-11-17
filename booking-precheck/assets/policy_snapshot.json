@@ -1,0 +1,1932 @@
+{
+  "schema_version": "0.2",
+  "snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+  "name": "TRAINING-LINE CNSHA-AEJEA Booking Precheck Teaching Snapshot",
+  "carrier_code": "TRAINING-LINE",
+  "route_scope": {
+    "port_of_loading": [
+      "CNSHA"
+    ],
+    "port_of_discharge": [
+      "AEJEA"
+    ],
+    "facility_codes": [
+      "CNSHA-TRAIN-T1",
+      "AEJEA-TRAIN-T1"
+    ],
+    "service_codes": [
+      "TRAIN-ME1"
+    ],
+    "vessel_operator_codes": [
+      "TRAINING-LINE"
+    ]
+  },
+  "frozen_at": "2026-08-01T09:00:00+08:00",
+  "effective_from": "2026-08-01",
+  "effective_to": "2026-12-31",
+  "training_only": true,
+  "disclaimer": "Synthetic training policy only. It is not a real carrier, port, regulatory, approval, or rejection decision.",
+  "default_status": "PRECHECK_PASS",
+  "aggregation_policy": {
+    "status_precedence": [
+      "PRECHECK_BLOCKED",
+      "MANUAL_REVIEW",
+      "REQUIRE_INFORMATION",
+      "PRECHECK_PASS"
+    ],
+    "same_priority_conflict_status": "MANUAL_REVIEW",
+    "same_priority_conflict_reason_code": "GOV-RULE-CONFLICT",
+    "collect_all_matches": true
+  },
+  "rules": [
+    {
+      "rule_id": "DOC-DGD-REQUIRED",
+      "name": "Dangerous goods require preliminary DGD",
+      "description": "Dangerous-goods bookings must provide a preliminary DGD.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 700,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.booking_request.cargo.is_dangerous_goods",
+            "operator": "EQUALS",
+            "value": true
+          },
+          {
+            "fact": "documents.dgd",
+            "operator": "MISSING"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-DGD-REQUIRED",
+        "message_template": "Dangerous-goods bookings must provide a preliminary DGD.",
+        "required_fact_paths": [
+          "documents.dgd"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Dangerous goods require preliminary DGD",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Dangerous-goods bookings must provide a preliminary DGD. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Dangerous goods require preliminary DGD",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-SDS-REQUIRED",
+      "name": "Dangerous goods require SDS Extract",
+      "description": "Dangerous-goods bookings must provide an SDS Extract.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 700,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.booking_request.cargo.is_dangerous_goods",
+            "operator": "EQUALS",
+            "value": true
+          },
+          {
+            "fact": "documents.sds",
+            "operator": "MISSING"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-SDS-REQUIRED",
+        "message_template": "Dangerous-goods bookings must provide an SDS Extract.",
+        "required_fact_paths": [
+          "documents.sds"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Dangerous goods require SDS Extract",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Dangerous-goods bookings must provide an SDS Extract. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Dangerous goods require SDS Extract",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-DGD-UN-REQUIRED",
+      "name": "preliminary DGD requires UN Number",
+      "description": "The preliminary DGD must contain a valid UN Number.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 690,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.un_number",
+            "operator": "MISSING"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-DGD-UN-REQUIRED",
+        "message_template": "The preliminary DGD must contain a valid UN Number.",
+        "required_fact_paths": [
+          "documents.dgd.declaration.un_number"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "preliminary DGD requires UN Number",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: The preliminary DGD must contain a valid UN Number. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of preliminary DGD requires UN Number",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-DGD-PSN-REQUIRED",
+      "name": "preliminary DGD requires Proper Shipping Name",
+      "description": "The preliminary DGD must contain a Proper Shipping Name.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 690,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.proper_shipping_name",
+            "operator": "MISSING"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-DGD-PSN-REQUIRED",
+        "message_template": "The preliminary DGD must contain a Proper Shipping Name.",
+        "required_fact_paths": [
+          "documents.dgd.declaration.proper_shipping_name"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "preliminary DGD requires Proper Shipping Name",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: The preliminary DGD must contain a Proper Shipping Name. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of preliminary DGD requires Proper Shipping Name",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-SDS-S14-REQUIRED",
+      "name": "SDS Extract requires Section 14",
+      "description": "The SDS Extract must contain transport information in Section 14.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 690,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.sds",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.sds.transport_information",
+            "operator": "MISSING"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-SDS-S14-REQUIRED",
+        "message_template": "The SDS Extract must contain transport information in Section 14.",
+        "required_fact_paths": [
+          "documents.sds.transport_information"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "SDS Extract requires Section 14",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: The SDS Extract must contain transport information in Section 14. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of SDS Extract requires Section 14",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-SDS-FRESHNESS",
+      "name": "SDS Extract freshness limit",
+      "description": "The SDS Extract must not be older than 24 months at submission.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "MEDIUM",
+      "priority": 620,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.sds",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.sds.metadata.issued_at",
+            "operator": "OLDER_THAN_MONTHS",
+            "value": 24,
+            "compare_to_fact": "submitted_at"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-SDS-FRESHNESS",
+        "message_template": "The SDS Extract must not be older than 24 months at submission.",
+        "required_fact_paths": [
+          "documents.sds.metadata.issued_at"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "SDS Extract freshness limit",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: The SDS Extract must not be older than 24 months at submission. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of SDS Extract freshness limit",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-CONSIGNEE-REQUIRED",
+      "name": "Booking requires consignee",
+      "description": "The Booking Request must identify a consignee.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 680,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "documents.booking_request.parties.*.role",
+        "operator": "NOT_IN",
+        "value": [
+          "CONSIGNEE"
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-CONSIGNEE-REQUIRED",
+        "message_template": "The Booking Request must identify a consignee.",
+        "required_fact_paths": [
+          "documents.booking_request.parties"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Booking requires consignee",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: The Booking Request must identify a consignee. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Booking requires consignee",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-BOOKING-DGD-UN",
+      "name": "Booking and preliminary DGD UN Number consistency",
+      "description": "Booking Request and preliminary DGD UN Numbers must match.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "HIGH",
+      "priority": 760,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.booking_request.cargo.un_number",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.un_number",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.booking_request.cargo.un_number",
+            "operator": "NOT_EQUALS",
+            "compare_to_fact": "documents.dgd.declaration.un_number",
+            "normalization": [
+              "UN_NUMBER_CANONICAL"
+            ]
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CON-BOOKING-DGD-UN",
+        "message_template": "Booking Request and preliminary DGD UN Numbers must match.",
+        "required_fact_paths": [],
+        "routing_queue": "DG_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Booking and preliminary DGD UN Number consistency",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Booking Request and preliminary DGD UN Numbers must match. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Booking and preliminary DGD UN Number consistency",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-DGD-SDS-UN",
+      "name": "preliminary DGD and SDS Extract UN Number consistency",
+      "description": "preliminary DGD and SDS Extract UN Numbers must match.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "HIGH",
+      "priority": 760,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd.declaration.un_number",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.sds.transport_information.un_number",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.un_number",
+            "operator": "NOT_EQUALS",
+            "compare_to_fact": "documents.sds.transport_information.un_number",
+            "normalization": [
+              "UN_NUMBER_CANONICAL"
+            ]
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CON-DGD-SDS-UN",
+        "message_template": "preliminary DGD and SDS Extract UN Numbers must match.",
+        "required_fact_paths": [],
+        "routing_queue": "DG_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "preliminary DGD and SDS Extract UN Number consistency",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: preliminary DGD and SDS Extract UN Numbers must match. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of preliminary DGD and SDS Extract UN Number consistency",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-DGD-SDS-CLASS",
+      "name": "preliminary DGD and SDS Extract IMDG Class consistency",
+      "description": "preliminary DGD and SDS Extract IMDG classes must match.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "HIGH",
+      "priority": 750,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd.declaration.imdg_class",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.sds.transport_information.imdg_class",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.imdg_class",
+            "operator": "NOT_EQUALS",
+            "compare_to_fact": "documents.sds.transport_information.imdg_class"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CON-DGD-SDS-CLASS",
+        "message_template": "preliminary DGD and SDS Extract IMDG classes must match.",
+        "required_fact_paths": [],
+        "routing_queue": "DG_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "preliminary DGD and SDS Extract IMDG Class consistency",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: preliminary DGD and SDS Extract IMDG classes must match. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of preliminary DGD and SDS Extract IMDG Class consistency",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-GROSS-WEIGHT",
+      "name": "Gross-weight tolerance",
+      "description": "Booking and preliminary DGD gross-weight variance must not exceed 2 percent.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "MEDIUM",
+      "priority": 650,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.booking_request.cargo.gross_weight_kg",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.gross_weight_kg",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.booking_request.cargo.gross_weight_kg",
+            "operator": "PERCENT_DIFFERENCE_GREATER_THAN",
+            "compare_to_fact": "documents.dgd.declaration.gross_weight_kg",
+            "value": 2
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CON-GROSS-WEIGHT",
+        "message_template": "Booking and preliminary DGD gross-weight variance must not exceed 2 percent.",
+        "required_fact_paths": [],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Gross-weight tolerance",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Booking and preliminary DGD gross-weight variance must not exceed 2 percent. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Gross-weight tolerance",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-PACKAGE-COUNT",
+      "name": "Package-count consistency",
+      "description": "Booking and preliminary DGD package counts must match.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "MEDIUM",
+      "priority": 640,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.booking_request.cargo.total_packages",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.total_packages",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.booking_request.cargo.total_packages",
+            "operator": "NOT_EQUALS",
+            "compare_to_fact": "documents.dgd.declaration.total_packages"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CON-PACKAGE-COUNT",
+        "message_template": "Booking and preliminary DGD package counts must match.",
+        "required_fact_paths": [],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Package-count consistency",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Booking and preliminary DGD package counts must match. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Package-count consistency",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-MARINE-POLLUTANT",
+      "name": "Marine-pollutant consistency",
+      "description": "preliminary DGD and SDS Extract marine-pollutant declarations must match.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "HIGH",
+      "priority": 730,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd.declaration.marine_pollutant",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.sds.transport_information.marine_pollutant",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.marine_pollutant",
+            "operator": "NOT_EQUALS",
+            "compare_to_fact": "documents.sds.transport_information.marine_pollutant"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CON-MARINE-POLLUTANT",
+        "message_template": "preliminary DGD and SDS Extract marine-pollutant declarations must match.",
+        "required_fact_paths": [],
+        "routing_queue": "DG_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Marine-pollutant consistency",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: preliminary DGD and SDS Extract marine-pollutant declarations must match. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Marine-pollutant consistency",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-FLASH-POINT",
+      "name": "Class 3 flash point required",
+      "description": "Class 3 cargo must have a usable flash point in SDS Extract Section 9.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "HIGH",
+      "priority": 720,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.sds",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.sds.transport_information.imdg_class",
+            "operator": "EQUALS",
+            "value": "3"
+          },
+          {
+            "fact": "documents.sds.physical_properties.flash_point_c",
+            "operator": "MISSING"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "CON-FLASH-POINT",
+        "message_template": "Class 3 cargo must have a usable flash point in SDS Extract Section 9.",
+        "required_fact_paths": [
+          "documents.sds.physical_properties.flash_point_c"
+        ],
+        "routing_queue": "DG_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Class 3 flash point required",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Class 3 cargo must have a usable flash point in SDS Extract Section 9. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Class 3 flash point required",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CAR-CLASS-1-BLOCK",
+      "name": "Class 1 not accepted",
+      "description": "TRAINING-LINE does not accept IMDG Class 1 on the teaching route.",
+      "category": "DANGEROUS_GOODS_ACCEPTANCE",
+      "severity": "CRITICAL",
+      "priority": 930,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "documents.dgd.declaration.imdg_class",
+        "operator": "MATCHES",
+        "value": "^1(\\.|$)"
+      },
+      "action": {
+        "result_status": "PRECHECK_BLOCKED",
+        "reason_code": "CAR-CLASS-1-BLOCK",
+        "message_template": "TRAINING-LINE does not accept IMDG Class 1 on the teaching route.",
+        "required_fact_paths": [],
+        "routing_queue": null,
+        "pause_automation": true
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Class 1 not accepted",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: TRAINING-LINE does not accept IMDG Class 1 on the teaching route. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Class 1 not accepted",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CAR-CLASS-7-BLOCK",
+      "name": "Class 7 not accepted",
+      "description": "TRAINING-LINE does not accept IMDG Class 7 on the teaching route.",
+      "category": "DANGEROUS_GOODS_ACCEPTANCE",
+      "severity": "CRITICAL",
+      "priority": 930,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "documents.dgd.declaration.imdg_class",
+        "operator": "MATCHES",
+        "value": "^7(\\.|$)"
+      },
+      "action": {
+        "result_status": "PRECHECK_BLOCKED",
+        "reason_code": "CAR-CLASS-7-BLOCK",
+        "message_template": "TRAINING-LINE does not accept IMDG Class 7 on the teaching route.",
+        "required_fact_paths": [],
+        "routing_queue": null,
+        "pause_automation": true
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Class 7 not accepted",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: TRAINING-LINE does not accept IMDG Class 7 on the teaching route. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Class 7 not accepted",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CAR-LOW-FLASH-POINT-BLOCK",
+      "name": "Low flash-point Class 3 not accepted",
+      "description": "TRAINING-LINE does not accept Class 3 cargo below -18°C flash point.",
+      "category": "DANGEROUS_GOODS_ACCEPTANCE",
+      "severity": "CRITICAL",
+      "priority": 920,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.sds.transport_information.imdg_class",
+            "operator": "EQUALS",
+            "value": "3"
+          },
+          {
+            "fact": "documents.sds.physical_properties.flash_point_c",
+            "operator": "LESS_THAN",
+            "value": -18
+          }
+        ]
+      },
+      "action": {
+        "result_status": "PRECHECK_BLOCKED",
+        "reason_code": "CAR-LOW-FLASH-POINT-BLOCK",
+        "message_template": "TRAINING-LINE does not accept Class 3 cargo below -18°C flash point.",
+        "required_fact_paths": [
+          "documents.sds.transport_information.imdg_class",
+          "documents.sds.physical_properties.flash_point_c"
+        ],
+        "routing_queue": null,
+        "pause_automation": true
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Low flash-point Class 3 not accepted",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: TRAINING-LINE does not accept Class 3 cargo below -18°C flash point. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Low flash-point Class 3 not accepted",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CAR-REEFER-DG-BLOCK",
+      "name": "Dangerous goods in reefer not accepted",
+      "description": "TRAINING-LINE does not accept dangerous goods in reefer equipment on the teaching route.",
+      "category": "DANGEROUS_GOODS_ACCEPTANCE",
+      "severity": "CRITICAL",
+      "priority": 910,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.booking_request.cargo.is_dangerous_goods",
+            "operator": "EQUALS",
+            "value": true
+          },
+          {
+            "fact": "documents.booking_request.equipment.container_type",
+            "operator": "IN",
+            "value": [
+              "20RF",
+              "40RF"
+            ]
+          }
+        ]
+      },
+      "action": {
+        "result_status": "PRECHECK_BLOCKED",
+        "reason_code": "CAR-REEFER-DG-BLOCK",
+        "message_template": "TRAINING-LINE does not accept dangerous goods in reefer equipment on the teaching route.",
+        "required_fact_paths": [],
+        "routing_queue": null,
+        "pause_automation": true
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Dangerous goods in reefer not accepted",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: TRAINING-LINE does not accept dangerous goods in reefer equipment on the teaching route. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Dangerous goods in reefer not accepted",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "ROU-SNAPSHOT-SCOPE",
+      "name": "Route outside snapshot scope",
+      "description": "The teaching snapshot only covers CNSHA to AEJEA on TRAIN-ME1.",
+      "category": "ROUTE_AND_PORT",
+      "severity": "HIGH",
+      "priority": 810,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [],
+        "port_of_discharge": [],
+        "service_codes": []
+      },
+      "condition": {
+        "any": [
+          {
+            "fact": "documents.booking_request.route.port_of_loading.unlocode",
+            "operator": "NOT_EQUALS",
+            "value": "CNSHA"
+          },
+          {
+            "fact": "documents.booking_request.route.port_of_discharge.unlocode",
+            "operator": "NOT_EQUALS",
+            "value": "AEJEA"
+          },
+          {
+            "fact": "documents.booking_request.service_code",
+            "operator": "NOT_EQUALS",
+            "value": "TRAIN-ME1"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "ROU-SNAPSHOT-SCOPE",
+        "message_template": "The teaching snapshot only covers CNSHA to AEJEA on TRAIN-ME1.",
+        "required_fact_paths": [],
+        "routing_queue": "ROUTE_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Route outside snapshot scope",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: The teaching snapshot only covers CNSHA to AEJEA on TRAIN-ME1. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Route outside snapshot scope",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "ROU-PARTNER-OPERATOR",
+      "name": "Partner vessel operator approval",
+      "description": "A partner-operated vessel requires manual route approval.",
+      "category": "ROUTE_AND_PORT",
+      "severity": "HIGH",
+      "priority": 800,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "documents.booking_request.vessel_operator_code",
+        "operator": "NOT_EQUALS",
+        "value": "TRAINING-LINE"
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "ROU-PARTNER-OPERATOR",
+        "message_template": "A partner-operated vessel requires manual route approval.",
+        "required_fact_paths": [],
+        "routing_queue": "ROUTE_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Partner vessel operator approval",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: A partner-operated vessel requires manual route approval. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Partner vessel operator approval",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "TIM-DOCUMENT-CUTOFF",
+      "name": "Document submission cutoff",
+      "description": "Documents must be submitted at least five working days before ETD.",
+      "category": "TIMING",
+      "severity": "MEDIUM",
+      "priority": 610,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "submitted_at",
+        "operator": "WORKING_DAYS_BEFORE",
+        "compare_to_fact": "documents.booking_request.route.etd",
+        "value": 5
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "TIM-DOCUMENT-CUTOFF",
+        "message_template": "Documents must be submitted at least five working days before ETD.",
+        "required_fact_paths": [],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Document submission cutoff",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Documents must be submitted at least five working days before ETD. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Document submission cutoff",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CON-PACKING-GROUP",
+      "name": "Packing Group consistency",
+      "description": "preliminary DGD and SDS Extract Packing Groups must match.",
+      "category": "CROSS_DOCUMENT_CONSISTENCY",
+      "severity": "HIGH",
+      "priority": 740,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd.declaration.packing_group",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.sds.transport_information.packing_group",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.declaration.packing_group",
+            "operator": "NOT_EQUALS",
+            "compare_to_fact": "documents.sds.transport_information.packing_group"
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CON-PACKING-GROUP",
+        "message_template": "preliminary DGD and SDS Extract Packing Groups must match.",
+        "required_fact_paths": [],
+        "routing_queue": "DG_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Packing Group consistency",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: preliminary DGD and SDS Extract Packing Groups must match. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Packing Group consistency",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-DGD-SIGNATURE",
+      "name": "preliminary DGD shipper declaration signature",
+      "description": "The preliminary DGD shipper declaration must be signed.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 710,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.shipper_declaration_signed",
+            "operator": "NOT_EQUALS",
+            "value": true
+          }
+        ]
+      },
+      "action": {
+        "result_status": "REQUIRE_INFORMATION",
+        "reason_code": "DOC-DGD-SIGNATURE",
+        "message_template": "The preliminary DGD shipper declaration must be signed.",
+        "required_fact_paths": [
+          "documents.dgd.shipper_declaration_signed"
+        ],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "preliminary DGD shipper declaration signature",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: The preliminary DGD shipper declaration must be signed. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of preliminary DGD shipper declaration signature",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "DOC-KEY-FIELD-LOW-CONFIDENCE",
+      "name": "Low-confidence key field",
+      "description": "A key extracted field below 0.80 confidence requires confirmation.",
+      "category": "DOCUMENT_COMPLETENESS",
+      "severity": "HIGH",
+      "priority": 715,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.dgd",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.metadata.field_confidences.un_number",
+            "operator": "EXISTS"
+          },
+          {
+            "fact": "documents.dgd.metadata.field_confidences.un_number",
+            "operator": "LESS_THAN",
+            "value": 0.8
+          }
+        ]
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "DOC-KEY-FIELD-LOW-CONFIDENCE",
+        "message_template": "A key extracted field below 0.80 confidence requires confirmation.",
+        "required_fact_paths": [],
+        "routing_queue": "DOCUMENT_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Low-confidence key field",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: A key extracted field below 0.80 confidence requires confirmation. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Low-confidence key field",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "CAR-IBC-MANUAL-APPROVAL",
+      "name": "IBC packaging manual approval",
+      "description": "IBC packaging requires case-by-case approval from the teaching DG Desk.",
+      "category": "DANGEROUS_GOODS_ACCEPTANCE",
+      "severity": "HIGH",
+      "priority": 780,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "documents.dgd.declaration.package_type",
+        "operator": "EQUALS",
+        "value": "IBC"
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "CAR-IBC-MANUAL-APPROVAL",
+        "message_template": "IBC packaging requires case-by-case approval from the teaching DG Desk.",
+        "required_fact_paths": [],
+        "routing_queue": "DG_DESK",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "IBC packaging manual approval",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: IBC packaging requires case-by-case approval from the teaching DG Desk. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of IBC packaging manual approval",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "PORT-TEMPORARY-DG-SUSPENSION",
+      "name": "Destination facility DG suspension",
+      "description": "AEJEA-TRAIN-T1 temporarily suspends dangerous-goods acceptance from 2026-09-10 through 2026-09-12.",
+      "category": "ROUTE_AND_PORT",
+      "severity": "CRITICAL",
+      "priority": 940,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "all": [
+          {
+            "fact": "documents.booking_request.route.port_of_discharge.facility_code",
+            "operator": "EQUALS",
+            "value": "AEJEA-TRAIN-T1"
+          },
+          {
+            "fact": "documents.booking_request.route.eta",
+            "operator": "DATE_BETWEEN",
+            "value": [
+              "2026-09-10",
+              "2026-09-12"
+            ]
+          }
+        ]
+      },
+      "action": {
+        "result_status": "PRECHECK_BLOCKED",
+        "reason_code": "PORT-TEMPORARY-DG-SUSPENSION",
+        "message_template": "AEJEA-TRAIN-T1 temporarily suspends dangerous-goods acceptance from 2026-09-10 through 2026-09-12.",
+        "required_fact_paths": [
+          "documents.booking_request.route.port_of_discharge.facility_code",
+          "documents.booking_request.route.eta"
+        ],
+        "routing_queue": null,
+        "pause_automation": true
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Destination facility DG suspension",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: AEJEA-TRAIN-T1 temporarily suspends dangerous-goods acceptance from 2026-09-10 through 2026-09-12. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Destination facility DG suspension",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "GOV-SNAPSHOT-EXPIRED",
+      "name": "Policy snapshot expired",
+      "description": "A booking with ETD after snapshot expiry requires a current policy snapshot.",
+      "category": "GOVERNANCE",
+      "severity": "HIGH",
+      "priority": 850,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "documents.booking_request.route.etd",
+        "operator": "DATE_AFTER",
+        "value": "2026-12-31"
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "GOV-SNAPSHOT-EXPIRED",
+        "message_template": "A booking with ETD after snapshot expiry requires a current policy snapshot.",
+        "required_fact_paths": [],
+        "routing_queue": "POLICY_OWNER",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Policy snapshot expired",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: A booking with ETD after snapshot expiry requires a current policy snapshot. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Policy snapshot expired",
+        "real_policy_claim": false
+      }
+    },
+    {
+      "rule_id": "GOV-RULE-CONFLICT",
+      "name": "Equal-priority rule conflict",
+      "description": "Conflicting actions from equal-priority applicable rules require policy-owner review.",
+      "category": "GOVERNANCE",
+      "severity": "HIGH",
+      "priority": 1000,
+      "enabled": true,
+      "effective_from": "2026-08-01",
+      "effective_to": "2026-12-31",
+      "scope": {
+        "carrier_codes": [
+          "TRAINING-LINE"
+        ],
+        "port_of_loading": [
+          "CNSHA"
+        ],
+        "port_of_discharge": [
+          "AEJEA"
+        ],
+        "service_codes": [
+          "TRAIN-ME1"
+        ]
+      },
+      "condition": {
+        "fact": "evaluation.same_priority_conflict",
+        "operator": "EQUALS",
+        "value": true
+      },
+      "action": {
+        "result_status": "MANUAL_REVIEW",
+        "reason_code": "GOV-RULE-CONFLICT",
+        "message_template": "Conflicting actions from equal-priority applicable rules require policy-owner review.",
+        "required_fact_paths": [],
+        "routing_queue": "POLICY_OWNER",
+        "pause_automation": false
+      },
+      "source": {
+        "source_type": "SYNTHETIC_TRAINING_RULE",
+        "title": "Equal-priority rule conflict",
+        "authority": "TRAINING-LINE Workshop Policy Owner",
+        "url": null,
+        "evidence_excerpt": "Synthetic teaching rule: Conflicting actions from equal-priority applicable rules require policy-owner review. This statement is not a real carrier, port, or regulatory requirement.",
+        "verification_status": "SYNTHETIC",
+        "retrieved_at": "2026-08-01T09:00:00+08:00",
+        "effective_from": "2026-08-01",
+        "effective_to": "2026-12-31",
+        "licensing_note": "No external proprietary rule text is included."
+      },
+      "tags": [
+        "workshop",
+        "synthetic"
+      ],
+      "rule_basis": {
+        "type": "SYNTHETIC_TRAINING_POLICY",
+        "teaching_purpose": "Demonstrate observable handling of Equal-priority rule conflict",
+        "real_policy_claim": false
+      }
+    }
+  ]
+}

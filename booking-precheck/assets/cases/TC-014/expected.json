@@ -1,0 +1,24 @@
+{
+  "case_id": "TC-014",
+  "title": "毛重差异超过 2%",
+  "expected_status": "MANUAL_REVIEW",
+  "expected_reason_codes": [
+    "CON-GROSS-WEIGHT"
+  ],
+  "expected_rule_ids": [
+    "CON-GROSS-WEIGHT"
+  ],
+  "expected_routing_queue": "DOCUMENT_DESK",
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.cargo.gross_weight_kg",
+      "expected_value": 10201
+    },
+    {
+      "fact": "documents.dgd.declaration.gross_weight_kg",
+      "expected_value": 10000
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}

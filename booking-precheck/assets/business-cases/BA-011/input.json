@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-011",
+  "title": "低置信度 UN Number 经人工确认后恢复",
+  "base_fixture_path": "../../cases/TC-027/input.json",
+  "steps": [
+    {
+      "step_id": "S1",
+      "actor": "SYSTEM",
+      "trigger": "SUBMIT",
+      "derives_from": "BASE_FIXTURE",
+      "mutations": []
+    },
+    {
+      "step_id": "S2",
+      "actor": "DOCUMENT_REVIEWER",
+      "trigger": "HUMAN_CONFIRM",
+      "derives_from": "S1",
+      "mutations": [
+        {
+          "op": "replace",
+          "path": "/documents/dgd/metadata/field_confidences/un_number",
+          "value": 1.0
+        }
+      ],
+      "human_confirmation": {
+        "reviewer_role": "DOCUMENT_REVIEWER",
+        "fact_path": "documents.dgd.declaration.un_number",
+        "confirmed_value": "UN1263",
+        "source_document_id": "TC-027-DGD",
+        "note": "Reviewer confirmed the value from the source document; no policy rule was changed."
+      }
+    }
+  ]
+}

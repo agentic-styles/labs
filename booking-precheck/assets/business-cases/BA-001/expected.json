@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "suite": "BUSINESS_ACCEPTANCE",
+  "case_id": "BA-001",
+  "step_expectations": [
+    {
+      "step_id": "S1",
+      "expected_status": "PRECHECK_PASS",
+      "expected_reason_codes": [],
+      "expected_rule_ids": [],
+      "expected_routing_queues": [],
+      "expected_evidence": [],
+      "expected_next_action": "FORWARD_TO_DG_DESK",
+      "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01",
+      "audit_assertions": [
+        {
+          "type": "PRECHECK_NOT_FINAL_APPROVAL",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

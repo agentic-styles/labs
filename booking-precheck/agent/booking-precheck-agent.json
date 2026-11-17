@@ -1,0 +1,15 @@
+{
+  "protocol_version": "booking-precheck-eval/v1",
+  "transport": "stdio-jsonl",
+  "command": ["uv", "run", "python", "-m", "booking_precheck.evaluation_adapter"],
+  "cwd": ".",
+  "startup_timeout_seconds": 30,
+  "case_timeout_seconds": 180,
+  "env_file": ".env",
+  "env": {},
+  "capabilities": {
+    "returns_facts": true,
+    "returns_trace_id": true,
+    "supports_parallel_workers": false
+  }
+}

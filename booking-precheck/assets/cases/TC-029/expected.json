@@ -1,0 +1,24 @@
+{
+  "case_id": "TC-029",
+  "title": "目的设施临时停收危险品",
+  "expected_status": "PRECHECK_BLOCKED",
+  "expected_reason_codes": [
+    "PORT-TEMPORARY-DG-SUSPENSION"
+  ],
+  "expected_rule_ids": [
+    "PORT-TEMPORARY-DG-SUSPENSION"
+  ],
+  "expected_routing_queue": null,
+  "expected_required_facts": [],
+  "expected_evidence": [
+    {
+      "fact": "documents.booking_request.route.port_of_discharge.facility_code",
+      "expected_value": "AEJEA-TRAIN-T1"
+    },
+    {
+      "fact": "documents.booking_request.route.eta",
+      "expected_value": "2026-09-11"
+    }
+  ],
+  "policy_snapshot_id": "TRAINING-LINE-CNSHA-AEJEA-2026-08-01"
+}
