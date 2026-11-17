@@ -7,4 +7,4 @@
 - Preserve the distinction between a deterministic rule baseline, a scripted test model and a real-model Agent run. Do not describe offline scores as model accuracy.
 - The migrated Single-Agent deliberately lacks some application-level guardrails. Keep that teaching boundary explicit; behavior changes belong in a separately evaluated variant.
 - Tests and default CI do not invoke real models or Langfuse. Keep tracing disabled for offline checks.
-- Keep the course link and release version in sync with `agentic-styles/patterns`; the website must not require this workspace to build.
+- Keep the course link and release version in sync with `agentic-styles/agentic-styles.github.io`; the website must not require this workspace to build.

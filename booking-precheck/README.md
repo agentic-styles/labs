@@ -2,7 +2,7 @@
 
 这个 uv workspace 提供 Single-Agent 教学基线、确定性规则内核、统一 JSONL 契约、黑盒评测以及合成样本生成工具。
 
-[课程首页](https://agentic-styles.github.io/patterns/lab/) · [课程学习指南](https://agentic-styles.github.io/patterns/lab/tutorial.html) · [Agent 说明](agent/README.md) · [评测说明](evaluation/README.md) · [样本重建](tools/README.md)
+[课程首页](https://agentic-styles.github.io/lab/) · [课程学习指南](https://agentic-styles.github.io/lab/tutorial.html) · [Agent 说明](agent/README.md) · [评测说明](evaluation/README.md) · [样本重建](tools/README.md)
 
 ## 安装与重建
 

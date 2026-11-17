@@ -1,10 +1,10 @@
 # Agentic Styles · Labs
 
-可运行的 Agentic 架构实验工程，与 [Patterns 图鉴及课程](https://agentic-styles.github.io/patterns/) 配套。课程、Slides 与网站源码保留在 [agentic-styles/patterns](https://github.com/agentic-styles/patterns)，本仓库维护基线、契约、评测与样本生成工具。
+可运行的 Agentic 架构实验工程，与 [Patterns 图鉴及课程](https://agentic-styles.github.io/) 配套。课程、Slides 与网站源码保留在 [agentic-styles/agentic-styles.github.io](https://github.com/agentic-styles/agentic-styles.github.io)，本仓库维护基线、契约、评测与样本生成工具。
 
 ## Booking Precheck
 
-[工程与快速开始](booking-precheck/README.md) · [课程](https://agentic-styles.github.io/patterns/lab/) · [学习指南](https://agentic-styles.github.io/patterns/lab/tutorial.html)
+[工程与快速开始](booking-precheck/README.md) · [课程](https://agentic-styles.github.io/lab/) · [学习指南](https://agentic-styles.github.io/lab/tutorial.html)
 
 ```text
 booking-precheck/
@@ -24,7 +24,7 @@ booking-precheck/
 安装 Python 3.12 与 uv 后：
 
 ```sh
-git clone --branch v0.1.0 https://github.com/agentic-styles/labs.git
+git clone --branch v0.1.1 https://github.com/agentic-styles/labs.git
 cd labs/booking-precheck
 uv sync --all-packages --all-extras --locked
 uv run --locked python tools/generate_materials.py
